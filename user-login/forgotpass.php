@@ -60,10 +60,10 @@ session_start();
   <body class="bg-image flex items-center justify-center">
     
     <div class="box">
-      <img src="gandiv.png" alt="Logo" class="h-12 mx-auto mb-2 mt-5" />
+      <img src="../logo1" alt="Logo" class="h-12 mx-auto mb-2 mt-5" />
       <h2 class="text-2xl font-bold text-gray-800">Forgot Password</h2>
       <p class="text-gray-600 text-sm px-5">
-        Enter your registered email to receive a password reset link.
+        Enter your registered email to receive a password reset link for the Maintenance System.
       </p>
       <?php if(isset($_SESSION['Yatra_error_message'])): ?>
                     <div id="errorAlert" class="fade-out bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg shadow-md mb-4">
@@ -95,21 +95,16 @@ session_start();
     </form>
     </div>
     <script>
-    // Function to close error alert manually
-        function closeErrorAlert() {
-            document.getElementById('errorAlert').classList.add('hidden');
+    function closeErrorAlert() {
+        document.getElementById('errorAlert').classList.add('hidden');
+    }
+
+    setTimeout(() => {
+        let errorAlert = document.getElementById('errorAlert');
+        if (errorAlert) {
+            errorAlert.classList.add('hidden');
         }
-
-      
-
-        // Auto-hide error alert after 4 seconds
-        setTimeout(() => {
-            let errorAlert = document.getElementById('errorAlert');
-            if (errorAlert) {
-                errorAlert.classList.add('hidden');
-            }
-        }, 3000);
-   
+    }, 3000);
     </script>
   </body>
 </html>

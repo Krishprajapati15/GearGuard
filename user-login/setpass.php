@@ -6,29 +6,25 @@ require '../includes/scripts/connection.php';
 if (isset($_GET['token'])) {
     $token = $_GET['token'];
 
-    // Connect to the database
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Check if token exists and is valid (not expired)
     $stmt = $conn->prepare("SELECT * FROM forget_password_master WHERE reset_token=? AND used=FALSE");
     $stmt->bind_param("s", $token);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        // Token is valid, continue with form display
+        // Token valid
     } else {
         header("location: forgotpass");
-        // echo "Invalid or expired token.";
         exit;
     }
 
     $conn->close();
 } else {
     header("location: forgotpass");
-    // echo "Token is required.";
     exit;
 }
 ?>
@@ -38,7 +34,7 @@ if (isset($_GET['token'])) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Set New Password</title>
+    <title>Reset Password</title>
     <link rel="icon" type="image/png" href="Logo_Title.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -79,14 +75,8 @@ if (isset($_GET['token'])) {
       }
 
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
 
       .home-btn {
@@ -109,10 +99,10 @@ if (isset($_GET['token'])) {
     
     <div class="box">
       <button class="home-btn" onclick="goHome()">🏠</button>
-      <img src="gandiv.png" alt="Logo" class="h-12 mx-auto mb-2 mt-5" />
-      <h2 class="text-2xl font-bold text-gray-800">Set New Password</h2>
+      <img src="../logo.png" alt="Logo" class="h-12 mx-auto mb-2 mt-5" />
+      <h2 class="text-2xl font-bold text-gray-800">Reset Your Password</h2>
       <p class="text-gray-600 text-sm px-5">
-        Enter your new password to reset your account.
+        Enter your new password to regain access to your Maintenance System account.
       </p>
       
       <?php if(isset($_SESSION['Yatra_error_message'])): ?>
@@ -125,14 +115,11 @@ if (isset($_GET['token'])) {
                   <button onclick="closeErrorAlert()" class="text-red-700 hover:text-red-900 text-lg font-bold">&times;</button>
               </div>
           </div>
-          <?php unset($_SESSION['Yatra_error_message']); // Clear message after displaying ?>
+          <?php unset($_SESSION['Yatra_error_message']); ?>
       <?php endif; ?>
+
       <form method="POST" action="reset_password_action.php">
-        <input
-          type="hidden"
-          name="token"
-          value="<?php echo $token; ?>"
-        />
+        <input type="hidden" name="token" value="<?php echo $token; ?>" />
 
         <input
           type="password"
@@ -154,7 +141,7 @@ if (isset($_GET['token'])) {
           type="submit"
           class="w-full mt-8 bg-[#C4DFDF] text-gray-600 py-2 rounded-lg text-lg hover:bg-[#D2E9E9] transition"
         >
-          Reset Password → 
+          Reset Password →
         </button>
       </form>
     </div>
@@ -163,25 +150,17 @@ if (isset($_GET['token'])) {
       function goHome() {
         window.location.href = "index.php";
       }
-        // Function to close error alert manually
-        function closeErrorAlert() {
-            document.getElementById('errorAlert').classList.add('hidden');
+
+      function closeErrorAlert() {
+        document.getElementById('errorAlert').classList.add('hidden');
+      }
+
+      setTimeout(() => {
+        let errorAlert = document.getElementById('errorAlert');
+        if (errorAlert) {
+            errorAlert.classList.add('hidden');
         }
-
-      
-
-        // Auto-hide error alert after 4 seconds
-        setTimeout(() => {
-            let errorAlert = document.getElementById('errorAlert');
-            if (errorAlert) {
-                errorAlert.classList.add('hidden');
-            }
-        }, 3000);
-        
-    
-  
+      }, 3000);
     </script>
   </body>
 </html>
-
-

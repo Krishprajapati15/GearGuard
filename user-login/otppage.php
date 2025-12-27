@@ -40,11 +40,11 @@
   </head>
   <body class="bg-image flex items-center justify-center">
     <div class="bg-[#F8F6F4] shadow-lg rounded-lg p-8 w-96 text-center">
-      <img src="gandiv.png" alt="Logo" class="h-12 mx-auto mb-4" />
+      <img src="../logo1.png" alt="Logo" class="h-12 mx-auto mb-4" />
 
-      <h2 class="text-2xl font-bold text-gray-800">Enter OTP</h2>
+      <h2 class="text-2xl font-bold text-gray-800">Verify Email</h2>
       <p class="text-gray-600 text-sm">
-        We have sent a verification code to your email
+        We have sent a 4-digit verification code to your registered email for Maintenance System access.
       </p>
 
       <!-- Display Error Message if OTP doesn't match -->
@@ -54,15 +54,15 @@
         <strong class="block font-semibold">⚠️ Error!</strong>
         <p class="mt-2 text-sm"><?php echo $_SESSION['otp_error']; ?></p>
     </div>
-    <?php unset($_SESSION['otp_error']); // Clear the error message after displaying ?>
+    <?php unset($_SESSION['otp_error']); ?>
 <?php endif; ?>
 
 <?php if(isset($_SESSION['otp_success'])): ?>
     <div id="otpSuccess" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-3 rounded-lg shadow-md mb-4 transition-opacity duration-500">
-        <strong class="block font-semibold">✅ OTP Sent!</strong>
+        <strong class="block font-semibold">📩 OTP Sent!</strong>
         <p class="mt-2 text-sm"><?php echo $_SESSION['otp_success']; ?></p>
     </div>
-    <?php unset($_SESSION['otp_success']); // Clear message after displaying ?>
+    <?php unset($_SESSION['otp_success']); ?>
 <?php endif; ?>
 
     <p id="otpMessage" class="text-sm text-green-500 mt-2"></p>
@@ -83,7 +83,7 @@
       </form>
 
       <p class="text-sm text-gray-600 mt-4">
-        Didn’t receive a code? <a href="#" id="resendOtp" class="text-blue-500">Resend OTP</a>
+        Didn't receive a code? <a href="#" id="resendOtp" class="text-blue-500">Resend OTP</a>
       </p>
     </div>
     
@@ -117,7 +117,7 @@
 
   let resendBtn = document.getElementById("resendOtp");
   let otpMessage = document.getElementById("otpMessage");
-  let timer = 30; // 30 seconds countdown
+  let timer = 30;
 
   function startResendTimer() {
     resendBtn.disabled = true;
@@ -135,12 +135,10 @@
     }, 1000);
   }
 
-  // Start the timer when the page loads
   startResendTimer();
 
-  // Event listener for the resend OTP button
   resendBtn.addEventListener("click", function (e) {
-    e.preventDefault(); // Prevent default button action
+    e.preventDefault();
 
     fetch("resend_otp", {
       method: "POST",
@@ -152,37 +150,33 @@
         otpMessage.style.color = data.status === "success" ? "green" : "red";
 
         if (data.status === "success") {
-          timer = 30; // Reset timer
-          startResendTimer(); // Restart countdown
+          timer = 30;
+          startResendTimer();
         }
       })
       .catch((error) => console.error("Error:", error));
   });
 
-  // Redirect to userregister.php after 2 minutes
   setTimeout(function () {
     window.location.href = "userregister";
-  }, 60000); // 120,000 milliseconds = 2 minutes
-  
-    // Function to fade out messages after 5 seconds
-    setTimeout(() => {
-        let errorMsg = document.getElementById('otpError');
-        let successMsg = document.getElementById('otpSuccess');
-        
-        if (errorMsg) {
-            errorMsg.style.opacity = '0';
-            setTimeout(() => { errorMsg.style.display = 'none'; }, 500);
-        }
+  }, 60000);
 
-        if (successMsg) {
-            successMsg.style.opacity = '0';
-            setTimeout(() => { successMsg.style.display = 'none'; }, 500);
-        }
-    }, 5000);
+  setTimeout(() => {
+    let errorMsg = document.getElementById('otpError');
+    let successMsg = document.getElementById('otpSuccess');
+    
+    if (errorMsg) {
+        errorMsg.style.opacity = '0';
+        setTimeout(() => { errorMsg.style.display = 'none'; }, 500);
+    }
+
+    if (successMsg) {
+        successMsg.style.opacity = '0';
+        setTimeout(() => { successMsg.style.display = 'none'; }, 500);
+    }
+  }, 5000);
 
 </script>
-
-      
 
   </body>
 </html>

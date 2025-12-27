@@ -22,8 +22,8 @@ $currentPage = basename($currentURL);
                         <li><a href="equipmentlist" <?php if($currentPage=="equipmentlist.php" || $currentPage=="editequipment.php" || $currentPage=="addequipment.php"){echo 'class="active"' ;}?>>Machine & Tools</a></li>
                     </ul>
                 </li>
-                <li <?php if($currentPage=="reporting.php" ){echo 'class="active"' ;}?>>
-                    <a href="reporting"><img src="../assets/img/icons/report.svg" alt="img"><span>
+                <li <?php if($currentPage=="reports.php" ){echo 'class="active"' ;}?>>
+                    <a href="reports"><img src="../assets/img/icons/report.svg" alt="img"><span>
                             Reporting</span> </a>
                 </li>
                 <li <?php if($currentPage=="teamlist.php" || $currentPage=="addteam.php" || $currentPage=="editteam.php" ){echo 'class="active"' ;}?>>

@@ -31,12 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $row["user_name"]; // Get username for email
         $userRole = $row["user_role"]; // Fetch user role
 
-        // Check user role
-        if ($userRole != 3) {
-            $_SESSION['Yatra_error_message'] = "You are not eligible for this access. Please contact support.";
-            header("Location: ../../user-login/userlogin"); // Redirect to userregister.php
-            exit();
-        }
+        // // Check user role
+        // if ($userRole != 3) {
+        //     $_SESSION['Yatra_error_message'] = "You are not eligible for this access. Please contact support.";
+        //     header("Location: ../../user-login/userlogin"); // Redirect to userregister.php
+        //     exit();
+        // }
 
         // Verify the provided password
         if (password_verify($loginPassword, $hashedPasswordFromDB)) {

@@ -7,7 +7,8 @@ if(!isset($_SESSION['odoo_logedin_user_id'])){ header("Location: ../user-login/u
 $user_id = $_SESSION['odoo_logedin_user_id'];
 $user = mysqli_fetch_assoc(mysqli_query($conn,"SELECT user_role FROM user_master WHERE user_id=$user_id"));
 
-if($user['user_role'] != 3){ header("Location: 404.php"); exit(); }
+if($user['user_role'] == 2){header("location: technician_dashboard.php"); exit();}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

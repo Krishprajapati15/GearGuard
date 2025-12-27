@@ -1,3 +1,5 @@
+<?php include("../includes/scripts/connection.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,11 +67,19 @@
                                 </div>
                                 
                                 <div class="col-lg-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Equipment Category</label>
-                                        <input type="text" name="category" placeholder="Equipment Category Name">
-                                    </div>
-                                </div>
+    <div class="form-group">
+        <label>Equipment Category</label>
+        <select name="eq_cat_id" class="form-control">
+            <option value="">Select Category</option>
+            <?php
+            $cat = $conn->query("SELECT * FROM equipment_catgory ORDER BY name ASC");
+            while($row = $cat->fetch_assoc()){
+                echo "<option value='{$row['eq_cat_id']}'>{$row['name']}</option>";
+            }
+            ?>
+        </select>
+    </div>
+</div>
                                 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
@@ -81,7 +91,7 @@
                                     <button type="submit" name="submit" class="btn btn-submit me-2">Submit</button>
                                     <a href="equipmentlist" class="btn btn-cancel">Cancel</a>
                                 </div>
-
+                                
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 <?php
 session_start();
 session_destroy();
-header("location: adminlogin");
+header("location: ../user-login/userlogin");
 ?>

@@ -25,7 +25,7 @@
                         <h4>Add New work-Center</h4>
                     </div>  
                 </div>
-                <form action="add_request_action.php" method="post" enctype="multipart/form-data">
+                <form action="add_workcenter_action" method="post" enctype="multipart/form-data">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -46,14 +46,14 @@
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Tag</label>
-                                        <input type="text" name="Tag" placeholder="Enter Tag">
+                                        <input type="text" name="tag" placeholder="Enter Tag">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Alternative Work-Center</label>
-                                        <input type="text" name="Tag" placeholder="Enter Tag">
+                                        <input type="text" name="alternative" placeholder="Enter Tag">
                                     </div>
                                 </div>
                                 

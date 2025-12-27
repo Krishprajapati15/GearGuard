@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2025 at 05:19 AM
+-- Generation Time: Dec 27, 2025 at 06:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,40 @@ SET time_zone = "+00:00";
 --
 -- Database: `gear_guard`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `equipment_catgory`
+--
+
+CREATE TABLE `equipment_catgory` (
+  `eq_cat_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `company` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `equipment_master`
+--
+
+CREATE TABLE `equipment_master` (
+  `eq_id` int(11) NOT NULL,
+  `eq_cat_id` int(11) NOT NULL,
+  `company` varchar(50) NOT NULL,
+  `used_by` varchar(50) NOT NULL,
+  `maintaining_team` int(11) NOT NULL,
+  `assign_date` date NOT NULL,
+  `technician_id` int(11) DEFAULT NULL,
+  `emp_id` int(11) NOT NULL,
+  `scrap_date` date NOT NULL,
+  `location` varchar(50) NOT NULL,
+  `work_center` varchar(50) NOT NULL,
+  `desc` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -56,6 +90,40 @@ INSERT INTO `forget_password_master` (`id`, `email`, `reset_token`, `token_expir
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `maintenance_request`
+--
+
+CREATE TABLE `maintenance_request` (
+  `req_id` int(11) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `maintenance_for` int(11) NOT NULL,
+  `equipment_name` int(11) NOT NULL,
+  `catogery_name` varchar(50) NOT NULL,
+  `request_date` date NOT NULL,
+  `maintance_type` varchar(50) NOT NULL,
+  `team_name` varchar(50) NOT NULL,
+  `technician_name` varchar(50) NOT NULL,
+  `schedule_date` date NOT NULL,
+  `req_stage` varchar(50) NOT NULL,
+  `priority` varchar(50) NOT NULL,
+  `company` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `maintenance_team`
+--
+
+CREATE TABLE `maintenance_team` (
+  `team_id` int(11) DEFAULT NULL,
+  `team_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `otp_verifications`
 --
 
@@ -72,6 +140,17 @@ CREATE TABLE `otp_verifications` (
 
 INSERT INTO `otp_verifications` (`id`, `email`, `otp`, `created_at`) VALUES
 (41, '21012250410087@ljku.edu.in', '1387', '2025-03-10 19:38:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `technician_grp`
+--
+
+CREATE TABLE `technician_grp` (
+  `team_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -116,10 +195,34 @@ INSERT INTO `user_master` (`user_id`, `user_name`, `email`, `password`, `is_veri
 --
 
 --
+-- Indexes for table `equipment_catgory`
+--
+ALTER TABLE `equipment_catgory`
+  ADD PRIMARY KEY (`eq_cat_id`);
+
+--
+-- Indexes for table `equipment_master`
+--
+ALTER TABLE `equipment_master`
+  ADD PRIMARY KEY (`eq_id`);
+
+--
 -- Indexes for table `forget_password_master`
 --
 ALTER TABLE `forget_password_master`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `maintenance_request`
+--
+ALTER TABLE `maintenance_request`
+  ADD PRIMARY KEY (`req_id`);
+
+--
+-- Indexes for table `maintenance_team`
+--
+ALTER TABLE `maintenance_team`
+  ADD KEY `team_id` (`team_id`);
 
 --
 -- Indexes for table `otp_verifications`
@@ -138,10 +241,28 @@ ALTER TABLE `user_master`
 --
 
 --
+-- AUTO_INCREMENT for table `equipment_catgory`
+--
+ALTER TABLE `equipment_catgory`
+  MODIFY `eq_cat_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `equipment_master`
+--
+ALTER TABLE `equipment_master`
+  MODIFY `eq_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `forget_password_master`
 --
 ALTER TABLE `forget_password_master`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `maintenance_request`
+--
+ALTER TABLE `maintenance_request`
+  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `otp_verifications`

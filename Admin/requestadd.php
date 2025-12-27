@@ -239,7 +239,7 @@ require "../includes/scripts/connection.php";
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-sm-6 col-12">
+                                <div class="col-lg-4 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Request Date? <b style="color:red">*</b></label>
                                         <input type="date" name="request_date" class="form-control" value="2025-12-18"
@@ -247,7 +247,7 @@ require "../includes/scripts/connection.php";
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="col-lg-4 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Priority</label>
                                         <div class="d-flex mt-2">
@@ -260,7 +260,7 @@ require "../includes/scripts/connection.php";
                                                 <input class="form-check-input" type="radio" value="Medium"
                                                     name="priority" id="Medium">
 
-                                                <label class="form-check-label" for="Medium">Medium</label>
+                                                <label class="form-check-label" style="margin-right: 20px;" for="Medium">Medium</label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" value="High"

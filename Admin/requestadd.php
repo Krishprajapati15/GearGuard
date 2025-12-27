@@ -166,35 +166,35 @@
                 </div>
 
 
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form  action="add_request_action.php" method="post" enctype="multipart/form-data">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Subject <b style="color:red">*</b></label>
-                                        <input type="text" placeholder="Enter Subject">
+                                        <input type="text" name="subject" placeholder="Enter Subject">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Created By</label>
-                                        <input type="text" placeholder="Created By">
+                                        <input type="text"name="created_by" placeholder="Created By">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Team</label>
-                                        <input type="text" placeholder="Team Name">
+                                        <input type="text" name="team_name" placeholder="Team Name">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Category <b style="color:red">*</b></label>
-                                        <select name="p_cat" class="form-control select" required>
+                                        <select name="catogery_name" class="form-control select" required>
                                             <option value="Computers">Computers</option>
                                             <option value="Software">Software</option>
                                             <option value="Monitor">Monitor</option>
@@ -212,7 +212,7 @@
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Equipment <b style="color:red">*</b></label>
-                                        <select name="equipment" class="form-control select" required>
+                                        <select name="equipment_name" class="form-control select" required>
                                             <option value="Acer Laptop">Acer Laptop/LP/203/19281928</option>
                                         </select>
                                     </div>
@@ -221,7 +221,7 @@
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Scheduled Date? <b style="color:red">*</b></label>
-                                        <input type="datetime-local" name="sched_date" class="form-control"
+                                        <input type="datetime-local" name="schedule_date" class="form-control"
                                             value="2025-12-28T14:30" required>
                                     </div>
                                 </div>
@@ -261,13 +261,15 @@
                                         <label>Maintenance Type</label>
                                         <div class="d-flex mt-2">
                                             <div class="form-check me-3">
-                                                <input class="form-check-input" type="radio" name="m_type"
+                                                <input class="form-check-input" type="radio" name="maintance_type"
+                                                    value="Corrective"
                                                     id="corrective" checked>
                                                 <label class="form-check-label" for="corrective">Corrective</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="m_type"
-                                                    id="preventive">
+                                                <input class="form-check-input" type="radio" name="maintance_type"
+                                                    id="preventive"
+                                                    value="Preventive">
                                                 <label class="form-check-label" for="preventive">Preventive</label>
                                             </div>
                                         </div>
@@ -277,7 +279,7 @@
                                 <div class="col-lg-4 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Company</label>
-                                        <input type="text" placeholder="Company Name">
+                                        <input type="text" name="company" placeholder="Company Name">
                                     </div>
                                 </div>
 
@@ -294,6 +296,8 @@
                                         <textarea class="form-control"></textarea>
                                     </div>
                                 </div>
+
+                                <input type="hidden" name="req_stage" value="New Request">
 
 
                                 <div class="col-lg-12 mt-4">

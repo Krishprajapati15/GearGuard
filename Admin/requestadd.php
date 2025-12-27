@@ -198,18 +198,18 @@
                                         <label>Category <b style="color:red">*</b></label>
                                         <select name="p_cat" class="form-control select" required>
                                             <option value="Computers">Computers</option>
+                                            <option value="Software">Software</option>
+                                            <option value="Monitor">Monitor</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-sm-6 col-12">
+                                <!-- <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Technician <b style="color:red">*</b></label>
-                                        <select name="technician" class="form-control select">
-                                            <option value="Aka Foster">Aka Foster</option>
-                                        </select>
+                                        <input type="text" name="" id="" placeholder="Technician Name">
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
@@ -236,7 +236,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-sm-6 col-12">
+                                <div class="col-lg-4 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Priority</label>
                                         <div class="d-flex mt-2">
@@ -258,7 +258,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-sm-6 col-12">
+                                <div class="col-lg-4 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Maintenance Type</label>
                                         <div class="d-flex mt-2">
@@ -276,7 +276,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-sm-6 col-12">
+                                <div class="col-lg-4 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Company</label>
                                         <input type="text" class="form-control-plaintext border-bottom"

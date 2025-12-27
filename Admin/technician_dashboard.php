@@ -115,8 +115,11 @@
         </div>
 
         <div class="flex items-center space-x-6">
+          <button onclick="window.location.href='technician_dashboard.php'"
+                    class="btn-calendar flex items-center px-5 py-2.5 rounded-xl font-bold text-sm shadow-xl text-black bg-blue-200 hover:bg-blue-400"> Dashboard
+                </button>
           <button
-            onclick="window.location.href='tech_calendar.html'"
+            onclick="window.location.href='tech_calendar.php'"
             class="btn-calendar flex items-center px-5 py-2.5 rounded-xl font-bold text-sm shadow-xl"
           >
             <i class="fa fa-calendar-alt mr-2 text-[#A5D0D0]"></i> View Calendar

@@ -172,7 +172,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
-                                        <label>Subject? <b style="color:red">*</b></label>
+                                        <label>Subject <b style="color:red">*</b></label>
                                         <input type="text" placeholder="Enter Subject">
                                     </div>
                                 </div>
@@ -180,16 +180,14 @@
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Created By</label>
-                                        <input type="text" class="form-control-plaintext border-bottom"
-                                            value="Mitchell Admin" readonly>
+                                        <input type="text" placeholder="Created By">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Team</label>
-                                        <input type="text" class="form-control-plaintext border-bottom"
-                                            value="Internal Maintenance" readonly>
+                                        <input type="text" placeholder="Team Name">
                                     </div>
                                 </div>
 
@@ -279,8 +277,7 @@
                                 <div class="col-lg-4 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Company</label>
-                                        <input type="text" class="form-control-plaintext border-bottom"
-                                            value="My Company (San Francisco)" readonly>
+                                        <input type="text" placeholder="Company Name">
                                     </div>
                                 </div>
 

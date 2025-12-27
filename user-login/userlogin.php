@@ -15,7 +15,7 @@ session_start();
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       .bg-image {
-        background: url("loginbg.jpg") no-repeat center center/cover;
+        background: url("login-bg.png") no-repeat center center/cover;
         height: 100vh;
       }
     </style>

@@ -12,7 +12,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .bg-image {
-      background: url("registerbg.jpg") no-repeat center center/cover;
+      background: url("login-bg.png") no-repeat center center/cover;
       height: 100vh;
     }
 

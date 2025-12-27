@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
 
     if ($stmt->execute()) {
         $_SESSION["success"] = "Maintenance request created successfully!";
-        header("Location: request_list.php");
+        header("Location: index.php");
         exit;
     } else {
         echo "Error: " . $stmt->error;

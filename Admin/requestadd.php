@@ -170,7 +170,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-12 col-sm-12 col-12">
+                                <div class="col-lg-6 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Subject <b style="color:red">*</b></label>
                                         <input type="text" name="subject" placeholder="Enter Subject">
@@ -191,6 +191,16 @@
                                     </div>
                                 </div>
 
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Maintenance For <b style="color:red">*</b></label>
+                                        <select name="catogery_name" class="form-control select" required>
+                                            <option value="Equipment">Equipment</option>
+                                            <option value="Acer Laptop">Acer Laptop</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Category <b style="color:red">*</b></label>

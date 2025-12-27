@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $email = $_SESSION['temp_data']['email'];
-    $mobile = $_SESSION['temp_data']['mobile'];
+    // $mobile = $_SESSION['temp_data']['mobile'];
     $username = $_SESSION['temp_data']['username'];
-    $gender = $_SESSION['temp_data']['gender'];
+    // $gender = $_SESSION['temp_data']['gender'];
     $password = $_SESSION['temp_data']['password'];
     $otp_entered = strtoupper(trim($_POST['otp']));
 
@@ -35,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($otp_entered === $otp_stored) {
             // OTP is correct, insert user into user_master
-            $insertStmt = $conn->prepare("INSERT INTO `user_master`(`user_name`, `email`, `phone`, `password`, `gender`, `is_verified`, `is_confirmed`, `user_role`) VALUES (?,?,?,?,?,0,0,3)");
-            $insertStmt->bind_param("ssiss", $username, $email, $mobile, $password, $gender);
+            $insertStmt = $conn->prepare("INSERT INTO `user_master`(`user_name`, `email`, `password`, `is_verified`, `is_confirmed`, `user_role`) VALUES (?,?,?,0,0,3)");
+            $insertStmt->bind_param("sss", $username, $email, $password);
 
             if ($insertStmt->execute()) {
                 // Delete OTP record after successful verification

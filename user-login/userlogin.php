@@ -11,7 +11,7 @@ session_start();
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <title>Login Page</title>
+    <title>Login | Maintenance System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       .bg-image {
@@ -33,10 +33,10 @@ session_start();
           class="w-32 md:w-48 h-32 md:h-48"
         />
         <h2 class="text-black font-bold text-lg mt-4 text-center">
-          Discover Jharkhand’s Hidden Treasures
+          Maintenance & Asset Management Portal
         </h2>
         <p class="text-black text-sm text-center mt-2">
-          Join a vibrant community and explore Jharkhand’s breathtaking landscapes, tribal heritage, and unforgettable travel experiences.
+          Track equipment, request repairs, and manage preventive maintenance anytime, anywhere.
         </p>
         <div class="flex space-x-2 mt-6 md:mt-10 justify-center">
           <span class="bg-[#E3F4F4] px-2 py-1 rounded text-xs md:text-sm"
@@ -54,25 +54,24 @@ session_start();
         </div>
 
         <h2 class="text-xl md:text-2xl font-bold text-center mt-12 md:mt-10">
-          Welcome back to Yatra! 👋
+          Welcome Back 👋
         </h2>
         <p class="text-gray-600 text-xs md:text-sm text-center">
-          Sign in to your account to continue your journey
+          Sign in to access your Maintenance Dashboard
         </p>
 
         <div class="flex space-x-2 mt-2 text-center justify-center">
           <span class="bg-[#E3F4F4] px-2 py-1 rounded text-xs md:text-sm"
-            >🏰 Heritage Sites</span
+            >🏭 Equipment Tracking</span
           >
           <span class="bg-[#E3F4F4] px-2 text-center py-1 rounded text-xs md:text-sm"
-            >🚆 Travel & Connectivity</span
+            >🔧 Repair Requests</span
           >
           <span class="bg-[#E3F4F4] px-2 text-center py-1 rounded text-xs md:text-sm"
-            >🛕 Cultural Landmarks</span
+            >🗓 Preventive Calendar</span
           >
         </div>
-        <!-- Display Animated Success Message -->
-        <!-- Display Animated Success Message -->
+
         <?php if (isset($_SESSION['success_message'])): ?>
           <br>
                 <div id="successAlert" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg shadow-md mb-4">
@@ -84,11 +83,10 @@ session_start();
                         <button onclick="closeSuccessAlert()" class="text-green-700 hover:text-green-900 text-lg font-bold">&times;</button>
                     </div>
                 </div>
-                <?php unset($_SESSION['success_message']); // Clear message after displaying ?>
+                <?php unset($_SESSION['success_message']); ?>
         <?php endif; ?>
 
-           <!-- Display Animated Error Message (For 4 Seconds) -->
-           <?php if (isset($_SESSION['Yatra_error_message'])): ?>
+        <?php if (isset($_SESSION['Yatra_error_message'])): ?>
             <br>
                 <div id="errorAlert" class="fade-out bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg shadow-md mb-4">
                     <div class="flex items-center justify-between">
@@ -99,7 +97,7 @@ session_start();
                         <button onclick="closeErrorAlert()" class="text-red-700 hover:text-red-900 text-lg font-bold">&times;</button>
                     </div>
                 </div>
-                <?php unset($_SESSION['Yatra_error_message']); // Clear message after displaying ?>
+                <?php unset($_SESSION['Yatra_error_message']); ?>
             <?php endif; ?>
 
         <form class="mt-6" action="../includes/scripts/signmein.php" method="post">
@@ -139,25 +137,20 @@ session_start();
         </form>
 
         <p class="text-xs md:text-sm text-gray-600 mt-4 text-center">
-          New to Yatra ?
+          New to the Maintenance System?
           <a href="userregister" class="text-blue-500">Create an account →</a>
         </p>
       </div>
     </div>
     <script>
-      
-    
-        // Function to close error alert manually
         function closeErrorAlert() {
             document.getElementById('errorAlert').classList.add('hidden');
         }
 
-        // Function to close success alert manually
         function closeSuccessAlert() {
             document.getElementById('successAlert').style.display = 'none';
         }
 
-        // Auto-hide error alert after 4 seconds
         setTimeout(() => {
             let errorAlert = document.getElementById('errorAlert');
             if (errorAlert) {
@@ -170,7 +163,6 @@ session_start();
                 sucessalert.classList.add('hidden');
             }
         }, 3000);
-    
   </script>
   </body>
 </html>

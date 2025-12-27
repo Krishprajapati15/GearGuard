@@ -8,14 +8,14 @@ require '../vendor/autoload.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
-    $mobile = $_POST['mobile'];
+    // $mobile = $_POST['mobile'];
     $username = $_POST['username'];
-    $gender = $_POST['gender'];
+    // $gender = $_POST['gender'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
     // ✅ Check if any field is empty
-    if (empty($email) || empty($mobile) || empty($username) || empty($gender) || empty($password) || empty($confirm_password)) {
+    if (empty($email) || empty($username) ||  empty($password) || empty($confirm_password)) {
         $_SESSION['error_messages'] = "Please fill all fields.";
         header("location: userregister");
         exit();
@@ -49,11 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // ✅ Check if the mobile number is exactly 10 digits long
-    if (strlen($mobile) != 10 || !is_numeric($mobile)) {
-        $_SESSION['error_messages'] = "Mobile number must be 10 digits.";
-        header("location: userregister");
-        exit();
-    }
+    // if (strlen($mobile) != 10 || !is_numeric($mobile)) {
+    //     $_SESSION['error_messages'] = "Mobile number must be 10 digits.";
+    //     header("location: userregister");
+    //     exit();
+    // }
 
     // ✅ Check if the password length is between 8 and 14 characters
     if (strlen($password) < 8 || strlen($password) > 14) {
@@ -70,17 +70,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // ✅ Check if the mobile number already exists in the database
-    $sql = "SELECT * FROM user_master WHERE phone = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $mobile);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // $sql = "SELECT * FROM user_master WHERE phone = ?";
+    // $stmt = $conn->prepare($sql);
+    // $stmt->bind_param("s", $mobile);
+    // $stmt->execute();
+    // $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $_SESSION['error_messages'] = "This mobile number is already registered.";
-        header("location: userregister");
-        exit();
-    }
+    // if ($result->num_rows > 0) {
+    //     $_SESSION['error_messages'] = "This mobile number is already registered.";
+    //     header("location: userregister");
+    //     exit();
+    // }
     // Generate a 4-character OTP
     $otp = strtoupper(substr(str_shuffle('123456789'), 0, 4));
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -88,9 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Store temporary data in session
     $_SESSION['temp_data'] = [
         'email' => $email,
-        'mobile' => $mobile,
         'username' => $username,
-        'gender' => $gender,
         'password' => $password
     ];
     

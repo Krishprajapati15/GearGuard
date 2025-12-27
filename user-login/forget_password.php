@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Subject = "Reset Your Maintenance System Password";
 
             // Reset Link
-            $resetLink = "localhost/odoo/user-login/setpass?token=$token";
+            $resetLink = "localhost/gearguard/user-login/setpass?token=$token";
 
             // Body Content (TEXT ONLY UPDATED)
             $mail->isHTML(true);

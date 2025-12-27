@@ -60,7 +60,7 @@ session_start();
   <body class="bg-image flex items-center justify-center">
     
     <div class="box">
-      <img src="../logo1" alt="Logo" class="h-12 mx-auto mb-2 mt-5" />
+      <img src="../logo1.png" alt="Logo" class="h-12 mx-auto mb-2 mt-5" />
       <h2 class="text-2xl font-bold text-gray-800">Forgot Password</h2>
       <p class="text-gray-600 text-sm px-5">
         Enter your registered email to receive a password reset link for the Maintenance System.

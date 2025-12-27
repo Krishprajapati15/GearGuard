@@ -99,7 +99,7 @@ if (isset($_GET['token'])) {
     
     <div class="box">
       <button class="home-btn" onclick="goHome()">🏠</button>
-      <img src="../logo.png" alt="Logo" class="h-12 mx-auto mb-2 mt-5" />
+      <img src="../logo1.png" alt="Logo" class="h-12 mx-auto mb-2 mt-5" />
       <h2 class="text-2xl font-bold text-gray-800">Reset Your Password</h2>
       <p class="text-gray-600 text-sm px-5">
         Enter your new password to regain access to your Maintenance System account.

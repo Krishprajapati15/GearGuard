@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Set session and redirect to dashboard
             $_SESSION['Yatra_logedin_user_id'] = $userId;
-            header("Location: ../../index");
+            header("Location: ../../admin/index");
             exit();
         } else {
             $_SESSION['Yatra_error_message'] = "Incorrect password.";

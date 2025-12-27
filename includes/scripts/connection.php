@@ -4,7 +4,7 @@
 
 //$hostname = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
 
-$conn = new mysqli("localhost","root","","odoo");
+$conn = new mysqli("localhost","root","","gear_guard");
 
 
 // Check connection

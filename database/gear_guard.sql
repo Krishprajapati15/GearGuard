@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2025 at 06:11 AM
+-- Generation Time: Dec 27, 2025 at 09:55 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -85,7 +85,11 @@ INSERT INTO `forget_password_master` (`id`, `email`, `reset_token`, `token_expir
 (9, 'patelaryan5636@gmail.com', '558f254d25699bcdd02300b6333a443177778a2ae576c614eadd7e23d5613a1723c8427494a5331808b5feb5f1bd66b16a10', '2025-03-10 01:52:52', 0),
 (10, 'sachaniaryan675@gmail.com', '9801ed64d1383ebbaac68a3e863f65b69422a518c8355d11f647db35b17c99f4444b8b848ed21a11a87a0546daac1d54e7a7', '2025-03-10 16:50:58', 0),
 (11, 'patelaryan5636@gmail.com', '5f30a90c5712d7ed81a946d69798100a888cbc5d4ab6a23dad20990004686a6e5a604bfc7a8f1f5f9945f86a83ec78f052c0', '2025-03-12 09:38:11', 1),
-(12, 'patelaryan5636@gmail.com', '8e0933b750aea3e9db71ddce49801a6461a8d766b7a212d471dfdd8be1f9d2aa9d88a0957dbd40231484b39cdce56a6d96c4', '2025-12-26 13:02:16', 0);
+(12, 'patelaryan5636@gmail.com', '8e0933b750aea3e9db71ddce49801a6461a8d766b7a212d471dfdd8be1f9d2aa9d88a0957dbd40231484b39cdce56a6d96c4', '2025-12-26 13:02:16', 0),
+(13, 'patelaryan5636@gmail.com', '753a27658cb5abd9c12b83391df68d3feeb87f6ccf1f737cfea38aadddfc3e6927a9c5c7b77081e2ee252a0ee066d6a2d01a', '2025-12-27 02:01:28', 0),
+(14, 'patelaryan5636@gmail.com', 'fd2f04a4747a07e5ae6063169ff3a10ec2e8b8f17fc46d5b703bddcfe2167d304e173b38df3dc93c571ab510335a934882b3', '2025-12-27 02:02:55', 0),
+(15, 'patelaryan5636@gmail.com', '23ed8b960444fcb2173027bba013378968c6692a017992c42292ffc4d377919d2198b60476084c8751dfdf823e2d490646b2', '2025-12-27 02:04:58', 0),
+(16, 'patelaryan5636@gmail.com', '3ba4f0a83fbb13edcc8859d7f5f3959bb0f335bc090a819dc5e08cae8b7049afb0a3cc3b535bdfeacf4a45522d0935397781', '2025-12-27 02:05:38', 0);
 
 -- --------------------------------------------------------
 
@@ -97,7 +101,7 @@ CREATE TABLE `maintenance_request` (
   `req_id` int(11) NOT NULL,
   `subject` varchar(50) NOT NULL,
   `created_by` int(11) NOT NULL,
-  `maintenance_for` int(11) NOT NULL,
+  `maintenance_for` varchar(50) NOT NULL,
   `equipment_name` int(11) NOT NULL,
   `catogery_name` varchar(50) NOT NULL,
   `request_date` date NOT NULL,
@@ -109,6 +113,14 @@ CREATE TABLE `maintenance_request` (
   `priority` varchar(50) NOT NULL,
   `company` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `maintenance_request`
+--
+
+INSERT INTO `maintenance_request` (`req_id`, `subject`, `created_by`, `maintenance_for`, `equipment_name`, `catogery_name`, `request_date`, `maintance_type`, `team_name`, `technician_name`, `schedule_date`, `req_stage`, `priority`, `company`) VALUES
+(3, 'hello test', 0, 'work center', 0, 'Software', '2025-12-18', 'Corrective', 'galaxy', 'aryan', '2025-12-28', 'New Request', 'on', 'aadfa'),
+(5, 'hello test', 0, 'Work Center', 0, 'Software', '2025-12-18', 'Corrective', 'galaxy', 'aryan', '2025-12-28', 'New Request', 'on', 'aadfa');
 
 -- --------------------------------------------------------
 
@@ -190,6 +202,31 @@ INSERT INTO `user_master` (`user_id`, `user_name`, `email`, `password`, `is_veri
 (31, 'hotel4', 'hoteltest@gmail.com', '$2y$10$AB6Q8KBvCcdbYZ4voEfBe.0RVFJjhqUL6oVkUrstKjWG7h9n0/.uq', 1, 0, 1, 4, '2025-03-31'),
 (33, 'aryanpatel', 'rangatprajapatii@gmail.com', '$2y$10$QMS.p49q6beFteVERngRD.y4eISwB9TNoSLND6JYboogNrZ//sCo.', 1, 0, 0, 3, '2025-12-27');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `work_center_master`
+--
+
+CREATE TABLE `work_center_master` (
+  `wc_id` int(11) NOT NULL,
+  `workcenter_name` varchar(100) NOT NULL,
+  `code` varchar(50) DEFAULT NULL,
+  `tag` varchar(50) DEFAULT NULL,
+  `alternative_wc` varchar(100) DEFAULT NULL,
+  `cost_per_hour` decimal(10,2) DEFAULT NULL,
+  `capacity_time_efficiency` varchar(50) DEFAULT NULL,
+  `oee_target` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `work_center_master`
+--
+
+INSERT INTO `work_center_master` (`wc_id`, `workcenter_name`, `code`, `tag`, `alternative_wc`, `cost_per_hour`, `capacity_time_efficiency`, `oee_target`, `created_at`) VALUES
+(2, 'aryan', 'sd343', '5646343', '564', 5454.00, '56', 445534.00, '2025-12-27 08:41:37');
+
 --
 -- Indexes for dumped tables
 --
@@ -237,6 +274,12 @@ ALTER TABLE `user_master`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `work_center_master`
+--
+ALTER TABLE `work_center_master`
+  ADD PRIMARY KEY (`wc_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -256,13 +299,13 @@ ALTER TABLE `equipment_master`
 -- AUTO_INCREMENT for table `forget_password_master`
 --
 ALTER TABLE `forget_password_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `maintenance_request`
 --
 ALTER TABLE `maintenance_request`
-  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `otp_verifications`
@@ -275,6 +318,12 @@ ALTER TABLE `otp_verifications`
 --
 ALTER TABLE `user_master`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `work_center_master`
+--
+ALTER TABLE `work_center_master`
+  MODIFY `wc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

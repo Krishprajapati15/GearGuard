@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../includes/scripts/connection.php'; // Include database connection
+require_once '../includes/scripts/connection.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -14,7 +14,7 @@ if (!isset($_SESSION['temp_data']['email'])) {
 }
 
 $email = $_SESSION['temp_data']['email'];
- 
+
 // Generate a new 4-character OTP
 $new_otp = strtoupper(substr(str_shuffle('123456789'), 0, 4));
 
@@ -32,19 +32,22 @@ if ($stmt->execute()) {
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // SMTP host
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'patelaryan5636@gmail.com'; // Your email
-        $mail->Password = 'xarq luyb tkix qwey'; // Your email app password
+        $mail->Username = 'patelaryan5636@gmail.com';
+        $mail->Password = 'xarq luyb tkix qwey';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        $mail->setFrom('patelaryan5636@gmail.com', 'Yatra');
+        // ONLY TEXT CHANGED 👇
+        $mail->setFrom('patelaryan5636@gmail.com', 'Maintenance System');
         $mail->addAddress($email);
 
         $mail->isHTML(true);
-        $mail->Subject = 'Your New OTP Code';
-        $mail->Body = "Your new OTP Code is <b>$new_otp</b>";
+        $mail->Subject = 'Your New OTP Code - Maintenance System';
+        $mail->Body = "Hello,<br><br>Your new OTP Code to continue registering for the <b>Maintenance System</b> is:<br>
+                       <h2 style='color:#2c7865;'>$new_otp</h2>
+                       <br>If you did NOT request this, you may ignore this email.";
 
         $mail->send();
 

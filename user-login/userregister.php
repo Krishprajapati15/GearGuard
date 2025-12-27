@@ -12,7 +12,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .bg-image {
-      background: url("registerbg.jpg") no-repeat center center/cover;
+      background: url("login-bg.png") no-repeat center center/cover;
       height: 100vh;
     }
 
@@ -38,7 +38,7 @@
   <div class="bg-[#F8F6F4] shadow-lg rounded-lg flex flex-col md:flex-row-reverse overflow-hidden w-full max-w-4xl">
     <div class="hidden md:flex w-2/5 bg-[#D2E9E9] flex-col justify-center items-center p-6 md:p-10">
       <a href="index">
-        <img src="yatra.png" alt="Illustration" class="w-32 md:w-48 h-32 md:h-48" />
+        <img src="../logo2.png" alt="Illustration" class=" h-32 md:h-48" />
       </a>
       <h2 class="text-black font-bold text-lg md:text-xl mt-4 text-center">
         Smart Maintenance & Asset Tracking System
@@ -56,7 +56,7 @@
 
     <div class="w-full md:w-3/5 relative p-6 md:p-10 scroll-container ">
       <div class="absolute top-6 left-1/2 transform -translate-x-1/2">
-        <img src="gandiv.png" alt="Logo" class="h-10 md:h-12" />
+        <img src="../logo1.png" alt="Logo" class="h-10 md:h-12" />
       </div>
 
       <h2 class="text-xl md:text-2xl font-bold text-center mt-12 md:mt-10">

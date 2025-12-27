@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require_once '../includes/scripts/connection.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the form data
     $token = $_POST['token'];
@@ -17,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Hash the new password
     $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
 
-    // Connect to the database again
+    // Database connection validation
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Get the user's email based on the reset token from the `forget_password_master` table
+    // Fetch email based on reset token
     $stmt = $conn->prepare("SELECT email FROM forget_password_master WHERE reset_token=? AND used=FALSE");
     $stmt->bind_param("s", $token);
     $stmt->execute();
@@ -32,30 +33,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = $result->fetch_assoc();
         $email = $row['email'];
 
-        // Update the password in the `user_master` table using the email
+        // Update user password
         $stmt2 = $conn->prepare("UPDATE user_master SET password=? WHERE email=?");
         $stmt2->bind_param("ss", $hashedPassword, $email);
 
         if ($stmt2->execute()) {
-            // Mark the token as used
+            // Mark token as used
             $stmt3 = $conn->prepare("UPDATE forget_password_master SET used=TRUE WHERE reset_token=?");
             $stmt3->bind_param("s", $token);
             $stmt3->execute();
 
-            // Show success message
-            $_SESSION['success_message'] = "Password updated successfully!";
+            // SUCCESS MESSAGE updated only 👇
+            $_SESSION['success_message'] = "Your password has been successfully reset! Please log in.";
             header("Location: userlogin");
         } else {
-            $_SESSION['Yatra_error_message'] = "Error updating password.";
+            // ERROR TEXT updated only 👇
+            $_SESSION['Yatra_error_message'] = "Failed to update password. Please try again.";
             header("Location: setpass?token=$token");
         }
     } else {
-        $_SESSION['Yatra_error_message'] = "Invalid or expired token.";
+        // ERROR TEXT updated only 👇
+        $_SESSION['Yatra_error_message'] = "Invalid or expired password reset link.";
         header("Location: setpass?token=$token");
     }
 
     $conn->close();
-}else{
+} else {
     header("location: forgotpass");
 }
 ?>

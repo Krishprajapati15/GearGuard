@@ -54,8 +54,8 @@
 
       <h2 class="text-2xl font-bold text-gray-800 mt-4">Success!</h2>
       <p class="text-gray-600 text-sm mt-2">
-        A password reset link has been sent to your email.<br />Please check
-        your inbox and follow the instructions.
+        A password reset link has been sent to your registered email.<br />
+        Please check your inbox to continue accessing your Maintenance System account.
       </p>
 
       <button onclick="window.location.href='index'" class="success-button mt-6">

@@ -15,7 +15,7 @@ session_start();
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       .bg-image {
-        background: url("loginbg.jpg") no-repeat center center/cover;
+        background: url("login-bg.png") no-repeat center center/cover;
         height: 100vh;
       }
     </style>
@@ -28,9 +28,9 @@ session_start();
         class="hidden md:flex w-2/5 bg-[#D2E9E9] flex-col justify-center items-center p-6 md:p-10"
       >
         <img
-          src="yatra.png"
+          src="../logo2.png"
           alt="Illustration"
-          class="w-32 md:w-48 h-32 md:h-48"
+          class="h-32 md:h-48"
         />
         <h2 class="text-black font-bold text-lg mt-4 text-center">
           Maintenance & Asset Management Portal
@@ -50,7 +50,7 @@ session_start();
 
       <div class="w-full md:w-3/5 relative p-6 md:p-10">
         <div class="absolute top-6 left-1/2 transform -translate-x-1/2">
-          <img src="gandiv.png" alt="Logo" class="h-10 md:h-12" />
+          <img src="../logo1.png" alt="Logo" class="h-10 md:h-12" />
         </div>
 
         <h2 class="text-xl md:text-2xl font-bold text-center mt-12 md:mt-10">

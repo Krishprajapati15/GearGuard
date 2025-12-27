@@ -28,6 +28,7 @@ if (isset($_POST['submit'])) {
     $stmt->bind_param("sisssssssssss", 
         $subject, 
         $created_by, 
+        $maintenance_for,
         $equipment_name, 
         $catogery_name, 
         $request_date, 

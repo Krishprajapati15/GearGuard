@@ -17,15 +17,10 @@
     </style>
   </head>
   <body class="p-6">
-    <div
-      class="max-w-7xl mx-auto bg-white rounded-xl shadow-sm border border-[#D2E9E9] overflow-hidden"
-    >
+    <div class="card overflow-hidden">
       <div class="p-4 border-b flex justify-between items-center">
         <div class="flex items-center space-x-4">
-          <button
-            onclick="toggleModal('eqModal', true)"
-            class="border-2 border-black px-4 py-1 rounded-md font-bold hover:bg-black hover:text-white transition-all"
-          >
+          <button onclick="toggleModal('eqModal', true)" class="btn-new">
             New
           </button>
           <h1 class="text-xl font-semibold">Equipment</h1>
@@ -45,27 +40,20 @@
               <th class="p-4">Company</th>
             </tr>
           </thead>
-          <tbody class="text-sm divide-y">
-            <tr class="hover:bg-[#F8F6F4]">
-              <td class="p-4 font-medium">Samsung Monitor 15"</td>
-              <td class="p-4">Tejas Modi</td>
-              <td class="p-4">Admin</td>
-              <td class="p-4 font-mono text-gray-400">MT/125/22778837</td>
-              <td class="p-4">Mitchell Admin</td>
-              <td class="p-4">Monitors</td>
-              <td class="p-4">My Company (San Francisco)</td>
-            </tr>
-          </tbody>
+          <tbody class="text-sm divide-y"></tbody>
         </table>
       </div>
     </div>
 
     <div
       id="eqModal"
-      class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-50"
+      class="modal-backdrop hidden fixed inset-0 bg-black/50 z-50 items-center justify-center p-4"
     >
       <div class="bg-white w-full max-w-2xl rounded-lg shadow-xl">
-        <div class="p-4 bg-[#D2E9E9] font-bold">Register New Equipment</div>
+        <div class="p-4 bg-light-mint font-bold border-b">
+          Register New Equipment
+        </div>
+
         <form id="eqForm" class="p-6 grid grid-cols-2 gap-4">
           <div class="col-span-2">
             <label class="block text-xs font-bold uppercase mb-1"
@@ -74,20 +62,16 @@
             <input
               type="text"
               id="eq_name"
-              class="w-full border p-2 rounded bg-[#F8F6F4]"
+              class="form-input w-full"
               required
             />
           </div>
+
           <div>
             <label class="block text-xs font-bold uppercase mb-1"
               >Employee Name</label
             >
-            <input
-              type="text"
-              id="eq_emp"
-              class="w-full border p-2 rounded bg-[#F8F6F4]"
-              required
-            />
+            <input type="text" id="eq_emp" class="form-input w-full" required />
           </div>
           <div>
             <label class="block text-xs font-bold uppercase mb-1"
@@ -96,10 +80,11 @@
             <input
               type="text"
               id="eq_dept"
-              class="w-full border p-2 rounded bg-[#F8F6F4]"
+              class="form-input w-full"
               required
             />
           </div>
+
           <div>
             <label class="block text-xs font-bold uppercase mb-1"
               >Serial Number</label
@@ -107,7 +92,7 @@
             <input
               type="text"
               id="eq_serial"
-              class="w-full border p-2 rounded bg-[#F8F6F4]"
+              class="form-input w-full"
               required
             />
           </div>
@@ -118,21 +103,23 @@
             <input
               type="text"
               id="eq_tech"
-              class="w-full border p-2 rounded bg-[#F8F6F4]"
+              class="form-input w-full"
               required
             />
           </div>
+
           <div>
             <label class="block text-xs font-bold uppercase mb-1"
               >Category</label
             >
-            <input
-              type="text"
-              id="eq_cat"
-              class="w-full border p-2 rounded bg-[#F8F6F4]"
-              required
-            />
+            <select id="eq_cat" class="form-input w-full" required>
+              <option value="" disabled selected>Select Category</option>
+              <option value="Monitors">Monitors</option>
+              <option value="Laptops">Laptops</option>
+              <option value="Printers">Printers</option>
+            </select>
           </div>
+
           <div>
             <label class="block text-xs font-bold uppercase mb-1"
               >Company</label
@@ -140,21 +127,22 @@
             <input
               type="text"
               id="eq_comp"
-              class="w-full border p-2 rounded bg-[#F8F6F4]"
+              class="form-input w-full"
               required
             />
           </div>
-          <div class="col-span-2 flex justify-end space-x-3 pt-4 border-t">
+
+          <div class="col-span-2 flex justify-end space-x-3 pt-4 border-t mt-2">
             <button
               type="button"
               onclick="toggleModal('eqModal', false)"
-              class="text-gray-500"
+              class="text-gray-500 font-semibold"
             >
               Cancel
             </button>
             <button
               type="submit"
-              class="bg-[#A5D0D0] px-8 py-2 rounded font-bold text-white"
+              class="bg-black px-8 py-2 rounded font-bold text-white hover:opacity-90"
             >
               Save Equipment
             </button>
@@ -164,14 +152,24 @@
     </div>
 
     <script>
+      // Toggle Modal Visibility
       function toggleModal(id, show) {
-        document.getElementById(id).style.display = show ? "flex" : "none";
+        const modal = document.getElementById(id);
+        if (show) {
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+        } else {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+        }
       }
 
+      // Handle Form Submission and Dynamic Table Row Creation
       document
         .getElementById("eqForm")
         .addEventListener("submit", function (e) {
           e.preventDefault();
+
           const fields = [
             "eq_name",
             "eq_emp",
@@ -181,21 +179,32 @@
             "eq_cat",
             "eq_comp",
           ];
+
+          // Map values from the inputs
           const data = fields.map((id) => document.getElementById(id).value);
 
-          const row = `<tr class="hover:bg-[#F8F6F4]">
-                <td class="p-4 font-medium">${data[0]}</td>
-                <td class="p-4">${data[1]}</td>
-                <td class="p-4">${data[2]}</td>
-                <td class="p-4 text-gray-400 font-mono">${data[3]}</td>
-                <td class="p-4">${data[4]}</td>
-                <td class="p-4">${data[5]}</td>
-                <td class="p-4">${data[6]}</td>
+          // Build the HTML Row
+          const row = `
+            <tr class="hover:bg-gray-50 transition-colors">
+                <td class="p-4 font-medium text-gray-800">${data[0]}</td>
+                <td class="p-4 text-gray-700">${data[1]}</td>
+                <td class="p-4 text-gray-700">${data[2]}</td>
+                <td class="p-4 text-gray-500 font-mono">${data[3]}</td>
+                <td class="p-4 text-gray-700">${data[4]}</td>
+                <td class="p-4 text-gray-700">
+                    <span class="px-2 py-1 bg-blue-50 text-blue-600 rounded text-xs font-semibold">
+                        ${data[5]}
+                    </span>
+                </td>
+                <td class="p-4 text-gray-700">${data[6]}</td>
             </tr>`;
 
+          // Append to table body
           document
             .querySelector("#eqTable tbody")
             .insertAdjacentHTML("beforeend", row);
+
+          // Reset and close
           this.reset();
           toggleModal("eqModal", false);
         });

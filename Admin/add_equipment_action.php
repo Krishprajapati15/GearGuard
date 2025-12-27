@@ -2,6 +2,19 @@
 session_start();
 require "../includes/scripts/connection.php";
 
+if(isset($_SESSION['odoo_logedin_user_id']) && (trim ($_SESSION['odoo_logedin_user_id']) !== '')){
+    $user_id = $_SESSION['odoo_logedin_user_id'];
+    $query = "SELECT * FROM user_master WHERE user_id = $user_id";
+    $result = mysqli_query($conn, $query);
+    $userdata = mysqli_fetch_assoc($result);
+    $user_role = $userdata["user_role"];
+    if($user_role != 3){
+        header("Location: 404.php");
+    }
+} else {
+    header("Location: ../user-login/userlogin.php");
+} 
+
 if(isset($_POST['submit'])){
 
     $eq_name   = $_POST['equipment'];

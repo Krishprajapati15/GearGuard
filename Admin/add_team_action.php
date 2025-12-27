@@ -7,7 +7,7 @@ if (!isset($_POST['submit'])) {
     exit;
 }
 
-$company_name = trim($_POST['company_name'] ?? '');
+// $company_name = trim($_POST['company_name'] ?? '');
 $team_name    = trim($_POST['equipment'] ?? ''); // input name in addteam.php is "equipment"
 $members      = $_POST['team_members'] ?? [];
 

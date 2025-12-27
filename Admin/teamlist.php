@@ -1,3 +1,6 @@
+<?php
+require_once "../includes/scripts/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,30 +67,56 @@
                                     <tr>
                                         <th>Team Name</th>
                                         <th>Team Members</th>
-                                        <th>Company</th>
+                                     
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
+                                    // Fetch all teams
+                                    $teams = $conn->query("SELECT team_id, team_name FROM maintenance_team ORDER BY team_name ASC");
+
+                                    if ($teams && $teams->num_rows > 0):
+                                        while ($team = $teams->fetch_assoc()):
+                                            $teamId   = (int)$team['team_id'];
+                                            $teamName = $team['team_name'];
+
+                                            // Fetch members for this team from technician_grp + user_master
+                                            $membersSql = "SELECT u.user_name
+                                                           FROM technician_grp tg
+                                                           JOIN user_master u ON tg.user_id = u.user_id
+                                                           WHERE tg.team_id = {$teamId}";
+                                            $membersRes = $conn->query($membersSql);
+
+                                            $memberNames = [];
+                                            if ($membersRes && $membersRes->num_rows > 0) {
+                                                while ($m = $membersRes->fetch_assoc()) {
+                                                    $memberNames[] = $m['user_name'];
+                                                }
+                                            }
+
+                                            $membersText = !empty($memberNames) ? implode(', ', $memberNames) : 'No members';
+                                    ?>
                                     <tr>
+                                        <td><?php echo htmlspecialchars($teamName); ?></td>
+                                        <td><?php echo htmlspecialchars($membersText); ?></td>
                                         <td>
-                                            Rajvant Palace
-                                        </td>
-                                        <td>
-                                            Historical
-                                        </td>
-                                        <td>
-                                            4.70
-                                        </td>
-                                        <td>
-                                            <a class='me-3' href="editteam">
+                                            <a class='me-3' href="editteam?team_id=<?php echo $teamId; ?>">
                                                 <img src='../assets/img/icons/edit.svg' alt='img'>
                                             </a>
-                                            <a class='me-3' href="teamdelete">
+                                            <a class='me-3' href="teamdelete?team_id=<?php echo $teamId; ?>">
                                                 <img src='../assets/img/icons/delete.svg' alt='img'>
                                             </a>
                                         </td>
                                     </tr>
+                                    <?php
+                                        endwhile;
+                                    else:
+                                    ?>
+                                    <tr>
+                                        <td colspan="3" class="text-center">No teams found.</td>
+                                    </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>

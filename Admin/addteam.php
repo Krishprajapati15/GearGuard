@@ -37,12 +37,12 @@ require_once "../includes/scripts/connection.php";
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-12 col-sm-12 col-12">
+                                <!-- <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Company Name <b style="color:red">*</b></label>
                                         <input type="text" name="company_name" class="form-control" placeholder="Enter Company Name" required>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">

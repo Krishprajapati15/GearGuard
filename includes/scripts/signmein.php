@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Set session and redirect to dashboard
-            $_SESSION['Yatra_logedin_user_id'] = $userId;
+            $_SESSION['odoo_logedin_user_id'] = $userId;
             header("Location: ../../admin/index");
             exit();
         } else {

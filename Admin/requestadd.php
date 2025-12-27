@@ -1,3 +1,7 @@
+<?php
+require "../includes/scripts/connection.php"; 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -159,17 +163,27 @@
                                     </div>
                                 </div>
 
+                        
+
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Team</label>
-                                        <input type="text" name="team_name" placeholder="Team Name">
+                                        <select name="team_name" class="form-control">
+                                            <option value="">Select Team</option>
+                                            <?php
+                                            $cat = $conn->query("SELECT * FROM maintenance_team ORDER BY team_name ASC");
+                                            while($row = $cat->fetch_assoc()){
+                                                echo "<option value='{$row['team_id']}'>{$row['team_name']}</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Maintenance For</label>
-                                        <select name="maintenance_for" id="" class="form-control">
+                                        <select name="maintenance_for" id="maintenanceFor" class="form-control">
                                             <option value="Equipment">Equipment</option>
                                             <option value="Work Center">Work Center</option>
                                         </select>
@@ -178,21 +192,41 @@
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Category</label>
-                                        <select name="catogery_name" id="" class="form-control">
-                                            <option value="Computer">Computer</option>
-                                            <option value="Software">Software</option>
-                                            <option value="Monitor">Monitor</option>
+                                        <label>Equipment Category</label>
+                                        <select name="catogery_name" class="form-control">
+                                            <option value="">Select Category</option>
+                                            <?php
+                                            $cat = $conn->query("SELECT * FROM equipment_catgory ORDER BY name ASC");
+                                            while($row = $cat->fetch_assoc()){
+                                                echo "<option value='{$row['eq_cat_id']}'>{$row['name']}</option>";
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Equipment</label>
-                                        <select name="equipment_name" id="" class="form-control">
-                                            <option value="Acer 123">Acer 123</option>
-                                            <option value="Equipment">Equipment</option>
+                                        <label>Equipment / Work Center</label>
+                                        <select name="equipment_name" id="equipmentSelect" class="form-control">
+                                            <option value="">Select Equipment or Work Center</option>
+                                            <?php
+                                            // Fetch all equipment (devices)
+                                            $equipments = $conn->query("SELECT eq_id,name FROM equipment_master ORDER BY name ASC");
+                                            if ($equipments && $equipments->num_rows > 0) {
+                                                while ($row = $equipments->fetch_assoc()) {
+                                                    echo "<option value='E_{$row['eq_id']}' data-type='Equipment'>{$row['name']}</option>";
+                                                }
+                                            }
+
+                                            // Fetch all work centers
+                                            $workcenters = $conn->query("SELECT wc_id, workcenter_name FROM work_center_master ORDER BY workcenter_name ASC");
+                                            if ($workcenters && $workcenters->num_rows > 0) {
+                                                while ($row = $workcenters->fetch_assoc()) {
+                                                    echo "<option value='W_{$row['wc_id']}' data-type='Work Center' style='display:none;'>{${'row'}['workcenter_name']}</option>";
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -218,17 +252,17 @@
                                         <label>Priority</label>
                                         <div class="d-flex mt-2">
                                             <div class="form-check me-3">
-                                                <input class="form-check-input" type="radio" name="priority" id="Low"
+                                                <input class="form-check-input" type="radio" value="Low" name="priority" id="Low"
                                                     checked>
                                                 <label class="form-check-label" for="Low">Low</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="priority"
-                                                    id="Medium">
+                                                <input class="form-check-input" type="radio" value="Medium" name="priority" id="Medium">    
+                                                
                                                 <label class="form-check-label" for="Medium">Medium</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="priority" id="High">
+                                                <input class="form-check-input" type="radio" value="High" name="priority" id="High">
                                                 <label class="form-check-label" for="High">High</label>
                                             </div>
                                         </div>
@@ -357,6 +391,40 @@
         // 4. Update the text color of the display button
         $('#current-text').removeClass('text-grey text-red text-green').addClass('text-' + statusColor);
     });
+});
+
+// Toggle equipment/work center options based on Maintenance For selection
+document.addEventListener('DOMContentLoaded', function () {
+    var maintenanceForSelect = document.getElementById('maintenanceFor');
+    var equipmentSelect      = document.getElementById('equipmentSelect');
+
+    function updateEquipmentOptions() {
+        var selectedType = maintenanceForSelect.value; // "Equipment" or "Work Center"
+
+        Array.prototype.forEach.call(equipmentSelect.options, function (opt) {
+            var type = opt.getAttribute('data-type');
+
+            if (!type) {
+                // Keep placeholder visible always
+                opt.style.display = '';
+                return;
+            }
+
+            if (type === selectedType) {
+                opt.style.display = '';
+            } else {
+                opt.style.display = 'none';
+            }
+        });
+
+        // Reset selection to placeholder after toggle
+        equipmentSelect.selectedIndex = 0;
+    }
+
+    if (maintenanceForSelect && equipmentSelect) {
+        updateEquipmentOptions();
+        maintenanceForSelect.addEventListener('change', updateEquipmentOptions);
+    }
 });
     </script>
 </body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2025 at 09:55 AM
+-- Generation Time: Dec 27, 2025 at 11:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,6 +34,13 @@ CREATE TABLE `equipment_catgory` (
   `company` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `equipment_catgory`
+--
+
+INSERT INTO `equipment_catgory` (`eq_cat_id`, `name`, `admin_id`, `company`) VALUES
+(1, 'software', 1, 'RGT');
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +50,7 @@ CREATE TABLE `equipment_catgory` (
 CREATE TABLE `equipment_master` (
   `eq_id` int(11) NOT NULL,
   `eq_cat_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `company` varchar(50) NOT NULL,
   `used_by` varchar(50) NOT NULL,
   `maintaining_team` int(11) NOT NULL,
@@ -120,7 +128,9 @@ CREATE TABLE `maintenance_request` (
 
 INSERT INTO `maintenance_request` (`req_id`, `subject`, `created_by`, `maintenance_for`, `equipment_name`, `catogery_name`, `request_date`, `maintance_type`, `team_name`, `technician_name`, `schedule_date`, `req_stage`, `priority`, `company`) VALUES
 (3, 'hello test', 0, 'work center', 0, 'Software', '2025-12-18', 'Corrective', 'galaxy', 'aryan', '2025-12-28', 'New Request', 'on', 'aadfa'),
-(5, 'hello test', 0, 'Work Center', 0, 'Software', '2025-12-18', 'Corrective', 'galaxy', 'aryan', '2025-12-28', 'New Request', 'on', 'aadfa');
+(5, 'hello test', 0, 'Work Center', 0, 'Software', '2025-12-18', 'Corrective', 'galaxy', 'aryan', '2025-12-28', 'New Request', 'on', 'aadfa'),
+(6, 'dsfgh', 0, 'Work Center', 0, '1', '2025-12-18', 'Corrective', '1', 'aryan', '2025-12-28', 'New Request', 'Medium', 'dsfgh'),
+(7, 'dsfgh', 0, 'Work Center', 0, '1', '2025-12-18', 'Corrective', '1', 'aryan', '2025-12-28', 'New Request', 'Medium', 'dsfgh');
 
 -- --------------------------------------------------------
 
@@ -132,6 +142,13 @@ CREATE TABLE `maintenance_team` (
   `team_id` int(11) DEFAULT NULL,
   `team_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `maintenance_team`
+--
+
+INSERT INTO `maintenance_team` (`team_id`, `team_name`) VALUES
+(1, 'Great_Mech');
 
 -- --------------------------------------------------------
 
@@ -287,7 +304,7 @@ ALTER TABLE `work_center_master`
 -- AUTO_INCREMENT for table `equipment_catgory`
 --
 ALTER TABLE `equipment_catgory`
-  MODIFY `eq_cat_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `eq_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `equipment_master`
@@ -305,7 +322,7 @@ ALTER TABLE `forget_password_master`
 -- AUTO_INCREMENT for table `maintenance_request`
 --
 ALTER TABLE `maintenance_request`
-  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `otp_verifications`

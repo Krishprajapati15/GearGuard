@@ -1,3 +1,6 @@
+<?php
+require_once "../includes/scripts/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +33,7 @@
                     </div>
                 </div>
                 
-                <form action="add_request_action.php" method="post" enctype="multipart/form-data">
+                <form action="add_team_action.php" method="post" enctype="multipart/form-data">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -54,10 +57,15 @@
                                         <div class="input-group">
                                             <div style="flex-grow: 1;">
                                                 <select id="memberSelector" class="form-control select2" multiple="multiple">
-                                                    <option value="John Doe">John Doe</option>
-                                                    <option value="Jane Smith">Jane Smith</option>
-                                                    <option value="Alex Johnson">Alex Johnson</option>
-                                                    <option value="Sarah Parker">Sarah Parker</option>
+                                                    <?php
+                                                    $users = $conn->query("SELECT user_id, user_name FROM user_master WHERE user_role = 2 ORDER BY user_name ASC");
+                                                    if ($users && $users->num_rows > 0) {
+                                                        while ($u = $users->fetch_assoc()) {
+                                                            $name = htmlspecialchars($u['user_name']);
+                                                            echo "<option value='{$name}'>{$name}</option>";
+                                                        }
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="input-group-append">

@@ -30,8 +30,8 @@ $currentPage = basename($currentURL);
                     <a href="reporting"><img src="../assets/img/icons/report.svg" alt="img"><span>
                             Reporting</span> </a>
                 </li>
-                <li <?php if($currentPage=="teams.php" ){echo 'class="active"' ;}?>>
-                    <a href="teams"><img src="../assets/img/icons/team.svg" alt="img"><span>
+                <li <?php if($currentPage=="teamlist.php" || $currentPage=="addteam.php" || $currentPage=="editteam.php" ){echo 'class="active"' ;}?>>
+                    <a href="teamlist"><img src="../assets/img/icons/team.svg" alt="img"><span>
                             Teams</span> </a>
                 </li>
                 

@@ -32,11 +32,11 @@
                 <!-- alert-box End -->
                 <div class="page-header">
                     <div class="page-title">
-                        <h4>Place List</h4>
-                        <h6>Manage Places</h6>
+                        <h4>Teams List</h4>
+                        <h6>Manage Teams</h6>
                     </div>  
                     <div class="page-btn">
-                        <a href="placeadd" class="btn btn-added"><img src="../assets/img/icons/plus.svg" alt="img" class="me-2">Add Place</a>
+                        <a href="addteam" class="btn btn-added"><img src="../assets/img/icons/plus.svg" alt="img" class="me-2">Add Team</a>
                     </div>
                 </div>
 
@@ -62,13 +62,9 @@
                             <table class="table  datanew">
                                 <thead>
                                     <tr>
-                                        <th>Place Name</th>
-                                        <th>Category</th>
-                                        <th>Rating</th>
-                                        <th>Location</th>
-                                        <th>Time</th>
-                                        <th>Entry Fee</th>
-                                        <th>Contact no</th>
+                                        <th>Team Name</th>
+                                        <th>Team Members</th>
+                                        <th>Company</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -84,25 +80,10 @@
                                             4.70
                                         </td>
                                         <td>
-                                            Rajpipla, Gujarat
-                                        </td>
-                                        <td>
-                                            08:00 AM - 07:00 PM
-                                        </td>
-                                        <td>
-                                            100
-                                        </td>
-                                        <td>
-                                            +91-9978343950
-                                        </td>
-                                        <td>
-                                            <a class='me-3' href="placeedit">
+                                            <a class='me-3' href="editteam">
                                                 <img src='../assets/img/icons/edit.svg' alt='img'>
                                             </a>
-                                            <a class='me-3' href="placedetails">
-                                                <img src='../assets/img/icons/eye.svg' alt='img'>
-                                            </a>
-                                            <a class='me-3' href="placedelete">
+                                            <a class='me-3' href="teamdelete">
                                                 <img src='../assets/img/icons/delete.svg' alt='img'>
                                             </a>
                                         </td>

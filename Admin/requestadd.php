@@ -169,7 +169,7 @@
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Maintenance For</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="maintenance_for" id="" class="form-control">
                                             <option value="Equipment">Equipment</option>
                                             <option value="Work Center">Work Center</option>
                                         </select>
@@ -179,7 +179,7 @@
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Category</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="catogery_name" id="" class="form-control">
                                             <option value="Computer">Computer</option>
                                             <option value="Software">Software</option>
                                             <option value="Monitor">Monitor</option>
@@ -190,7 +190,7 @@
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Equipment</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="equipment_name" id="" class="form-control">
                                             <option value="Acer 123">Acer 123</option>
                                             <option value="Equipment">Equipment</option>
                                         </select>
@@ -340,35 +340,24 @@
 
     <script src="../assets/js/script.js"></script>
     <script>
-        $(document).ready(function () {
-            $("#myInput").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
+        $(document).ready(function() {
+    $('.custom-status-dropdown .dropdown-item').on('click', function(e) {
+        e.preventDefault();
+        
+        // 1. Get the data from the clicked item
+        var statusText = $(this).data('text');
+        var statusColor = $(this).data('color');
 
-                // Target only the rows in the specific table body
-                var $tableRows = $("#maintenanceTable").children("tr");
-                var foundCount = 0;
+        // 2. Update the button text
+        $('#current-text').text(statusText);
 
-                $tableRows.each(function () {
-                    var rowText = $(this).text().toLowerCase();
+        // 3. Update the dot color
+        $('#current-dot').removeClass('grey red green').addClass(statusColor);
 
-                    // Search logic
-                    if (rowText.indexOf(value) > -1) {
-                        $(this).show();
-                        foundCount++;
-                    } else {
-                        $(this).hide();
-                    }
-                });
-
-                // Toggle the message div
-                // We do NOT hide the <thead> so the <th> tags stay visible
-                if (foundCount === 0 && value !== "") {
-                    $("#noDataMessage").show();
-                } else {
-                    $("#noDataMessage").hide();
-                }
-            });
-        });
+        // 4. Update the text color of the display button
+        $('#current-text').removeClass('text-grey text-red text-green').addClass('text-' + statusColor);
+    });
+});
     </script>
 </body>
 

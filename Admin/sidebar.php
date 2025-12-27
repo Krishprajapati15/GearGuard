@@ -10,8 +10,8 @@ $currentPage = basename($currentURL);
                     <a href="index"><img src="../assets/img/icons/dashboard.svg" alt="img"><span>
                             Dashboard</span> </a>
                 </li>
-                <li <?php if($currentPage=="maintenance_calendar.php" ){echo 'class="active"' ;}?>>
-                    <a href="maintenance_calendar"><img src="../assets/img/icons/calendars.svg" alt="img"><span>
+                <li <?php if($currentPage=="calendar.php" ){echo 'class="active"' ;}?>>
+                    <a href="calendar"><img src="../assets/img/icons/calendars.svg" alt="img"><span>
                             Calendar</span> </a>
                 </li>
                 <li class="submenu">

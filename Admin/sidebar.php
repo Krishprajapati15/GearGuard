@@ -6,7 +6,7 @@ $currentPage = basename($currentURL);
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li <?php if($currentPage=="index.php" ){echo 'class="active"' ;}?>>
+                <li <?php if($currentPage=="index.php" || $currentPage=="requestadd.php" ){echo 'class="active"' ;}?>>
                     <a href="index"><img src="../assets/img/icons/dashboard.svg" alt="img"><span>
                             Dashboard</span> </a>
                 </li>
@@ -18,9 +18,13 @@ $currentPage = basename($currentURL);
                     <a href="maintenance_calendar"><img src="../assets/img/icons/calendars.svg" alt="img"><span>
                             Calendar</span> </a>
                 </li>
-                <li <?php if($currentPage=="equipment.php" ){echo 'class="active"' ;}?>>
-                    <a href="equipment"><img src="../assets/img/icons/equipment.svg" alt="img"><span>
-                            Equipment</span> </a>
+                <li class="submenu">
+                    <a href="javascript:void(0);"><img src="../assets/img/icons/equipment.svg" alt="img"><span>
+                            Equipment</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="placelist" <?php if($currentPage=="workcenter.php"){echo 'class="active"' ;}?>>Work Center</a></li>
+                        <li><a href="placelist" <?php if($currentPage=="workcenter.php"){echo 'class="active"' ;}?>>Machine & Tools</a></li>
+                    </ul>
                 </li>
                 <li <?php if($currentPage=="reporting.php" ){echo 'class="active"' ;}?>>
                     <a href="reporting"><img src="../assets/img/icons/report.svg" alt="img"><span>
@@ -30,15 +34,7 @@ $currentPage = basename($currentURL);
                     <a href="teams"><img src="../assets/img/icons/team.svg" alt="img"><span>
                             Teams</span> </a>
                 </li>
-                <!-- <li class="submenu">
-                    <a href="javascript:void(0);"><img src="../assets/img/icons/places.svg" alt="img"><span>
-                            Places</span> <span class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="placelist" <?php if($currentPage=="placelist.php" ||
-                                $currentPage=="placedetails.php" || $currentPage=="placeadd.php" ||
-                                $currentPage=="placeedit.php" ){echo 'class="active"' ;}?>>Place list</a></li>
-                    </ul>
-                </li> -->
+                
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="../assets/img/icons/enable.svg" alt="img"><span>
                             Approval</span> <span class="menu-arrow"></span></a>

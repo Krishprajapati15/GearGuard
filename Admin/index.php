@@ -7,6 +7,46 @@
     ?>
     <title>Index</title>
 </head>
+<style>
+    /* Container for the input and icon */
+    .search-input-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Maginfying glass icon positioning */
+    .search-icon {
+        position: absolute;
+        left: 15px;
+        width: 16px;
+        height: 16px;
+        pointer-events: none;
+        /* This makes the icon greyish like your image */
+        filter: invert(40%) sepia(10%) saturate(500%) hue-rotate(170deg) brightness(90%) contrast(85%);
+    }
+
+    /* The search input styling */
+    .custom-search-input {
+        width: 100% !important;
+        padding-left: 45px !important;
+        /* Space for the icon */
+        height: 40px;
+        border-radius: 8px !important;
+        border: 1px solid #E0E4E8 !important;
+        /* Light border color */
+        font-size: 14px;
+        color: #555;
+    }
+
+    /* Border color change on click */
+    .custom-search-input:focus {
+        border-color: #A3C2C2 !important;
+        box-shadow: none !important;
+        outline: none;
+    }
+</style>
 
 <body>
     <div class="main-wrapper">
@@ -28,9 +68,24 @@
                 </div> -->
                 <!-- alert-box End -->
                 <div class="page-header">
-                    <div class="page-btn">
-                        <a href="placeadd" class="btn btn-added"><img src="../assets/img/icons/plus.svg" alt="img"
-                                class="me-2">Add Request</a>
+                    <div class="row align-items-center w-100">
+                        <div class="col-auto">
+                            <div class="page-btn">
+                                <a href="requestadd" class="btn btn-added">
+                                    <img src="../assets/img/icons/plus.svg" alt="img" class="me-2">Add Request
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col d-flex justify-content-end mt-2 mt-md-0">
+                            <div class="search-set w-100" style="max-width: 500px;">
+                                <div class="search-input-container">
+                                    <img src="../assets/img/icons/search.svg" class="search-icon" alt="search">
+                                    <input type="text" id="myInput" class="form-control custom-search-input"
+                                        placeholder="Search requests...">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -83,7 +138,7 @@
                                                 <th>Company</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="maintenanceTable">
                                             <tr>
                                                 <td>1</td>
                                                 <td>Test Activity</td>
@@ -111,8 +166,12 @@
                                                 <td>New Request</td>
                                                 <td>My Company</td>
                                             </tr>
+
                                         </tbody>
                                     </table>
+                                    <div id="noDataMessage" class="text-center p-5" style="display: none;">
+                                        <h5 class="text-muted">No matching requests found.</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -152,6 +211,8 @@
     </div>
 
 
+
+
     <script src="../assets/js/jquery-3.6.0.min.js"></script>
 
     <script src="../assets/js/feather.min.js"></script>
@@ -167,6 +228,37 @@
     <script src="../assets/plugins/apexchart/chart-data.js"></script>
 
     <script src="../assets/js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+
+                // Target only the rows in the specific table body
+                var $tableRows = $("#maintenanceTable").children("tr");
+                var foundCount = 0;
+
+                $tableRows.each(function () {
+                    var rowText = $(this).text().toLowerCase();
+
+                    // Search logic
+                    if (rowText.indexOf(value) > -1) {
+                        $(this).show();
+                        foundCount++;
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                // Toggle the message div
+                // We do NOT hide the <thead> so the <th> tags stay visible
+                if (foundCount === 0 && value !== "") {
+                    $("#noDataMessage").show();
+                } else {
+                    $("#noDataMessage").hide();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

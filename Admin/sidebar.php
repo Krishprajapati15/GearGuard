@@ -6,7 +6,7 @@ $currentPage = basename($currentURL);
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li <?php if($currentPage=="index.php" || $currentPage=="requestadd.php" ){echo 'class="active"' ;}?>>
+                <li <?php if($currentPage=="index.php" || $currentPage=="addrequest.php" ){echo 'class="active"' ;}?>>
                     <a href="index"><img src="../assets/img/icons/dashboard.svg" alt="img"><span>
                             Dashboard</span> </a>
                 </li>

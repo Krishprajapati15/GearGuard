@@ -22,8 +22,8 @@ $currentPage = basename($currentURL);
                     <a href="javascript:void(0);"><img src="../assets/img/icons/equipment.svg" alt="img"><span>
                             Equipment</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="workcenterlist" <?php if($currentPage=="workcenterlist.php" || $currentPage=="addworkcenter.php"){echo 'class="active"' ;}?>>Work Center</a></li>
-                        <li><a href="placelist" <?php if($currentPage=="workcenter.php"){echo 'class="active"' ;}?>>Machine & Tools</a></li>
+                        <li><a href="workcenterlist" <?php if($currentPage=="workcenterlist.php" || $currentPage=="addworkcenter.php" || $currentPage=="editworkcenter.php"){echo 'class="active"' ;}?>>Work Center</a></li>
+                        <li><a href="equipmentlist" <?php if($currentPage=="equipmentlist.php" || $currentPage=="editequipment.php" || $currentPage=="addequipment.php"){echo 'class="active"' ;}?>>Machine & Tools</a></li>
                     </ul>
                 </li>
                 <li <?php if($currentPage=="reporting.php" ){echo 'class="active"' ;}?>>

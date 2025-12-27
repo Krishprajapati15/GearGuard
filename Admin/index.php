@@ -198,7 +198,21 @@ if($user['user_role'] == 2){header("location: technician_dashboard.php"); exit()
                                                     <td><?php echo htmlspecialchars($row['catogery_name']); ?></td>
                                                     <td><?php echo htmlspecialchars($row['req_stage']); ?></td>
                                                     <td><?php echo htmlspecialchars($row['company']); ?></td>
-                                                    <td><p class="completed">completed</p></td>
+                                                    <?php
+                                                        $statusText = $row['req_stage'];
+                                                        $statusClass = '';
+
+                                                        if ($statusText === 'In Progress') {
+                                                            $statusClass = 'process';
+                                                        } elseif ($statusText === 'Blocked') {
+                                                            $statusClass = 'cancelled';
+                                                        } elseif ($statusText === 'Ready for next stage') {
+                                                            $statusClass = 'ready';
+                                                        } else {
+                                                            $statusClass = 'completed';
+                                                        }
+                                                    ?>
+                                                    <td><p class="<?php echo $statusClass; ?>"><?php echo htmlspecialchars($statusText); ?></p></td>
                                                 </tr>
                                             <?php
                                                 endwhile;

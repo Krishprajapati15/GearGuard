@@ -156,12 +156,12 @@ require "../includes/scripts/connection.php";
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-sm-6 col-12">
+                                <!-- <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Created By</label>
                                         <input type="text" name="created_by" placeholder="Created By">
                                     </div>
-                                </div>
+                                </div> -->
 
 
 
@@ -303,9 +303,9 @@ require "../includes/scripts/connection.php";
                                             <span class="dot grey me-2" id="status-dot-preview"></span>
 
                                             <select name="status" id="statusSelect" class="form-control select2">
-                                                <option value="grey" data-text="In Progress">In Progress</option>
-                                                <option value="red" data-text="Blocked">Blocked</option>
-                                                <option value="green" data-text="Ready for next stage">Ready for next
+                                                <option value="In Progress" data-text="In Progress">In Progress</option>
+                                                <option value="Blocked" data-text="Blocked">Blocked</option>
+                                                <option value="Ready for next stage" data-text="Ready for next stage">Ready for next
                                                     stage</option>
                                             </select>
                                         </div>

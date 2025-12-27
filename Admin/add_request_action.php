@@ -4,13 +4,13 @@ include("../includes/scripts/connection.php");
 if(!isset($_SESSION['odoo_logedin_user_id'])){ header("Location: ../user-login/userlogin.php"); exit(); }
 
 $user_id = $_SESSION['odoo_logedin_user_id'];
-$user = mysqli_fetch_assoc(mysqli_query($conn,"SELECT user_role FROM user_master WHERE user_id=$user_id"));
+$user = mysqli_fetch_assoc(mysqli_query($conn,"SELECT user_role,user_name FROM user_master WHERE user_id=$user_id"));
 
 if($user['user_role'] != 3){ header("Location: 404.php"); exit(); }
 if (isset($_POST['submit'])) {
 
     $subject         = $_POST['subject'];
-    $created_by      = $_POST['created_by'];
+    $created_by      = $_SESSION['odoo_logedin_user_id'];
     $team_name       = $_POST['team_name'];
     $catogery_name   = $_POST['catogery_name'];
     $equipment_name  = $_POST['equipment_name'];
@@ -19,11 +19,11 @@ if (isset($_POST['submit'])) {
     $priority        = $_POST['priority'];
     $maintance_type  = $_POST['maintance_type'];
     $company         = $_POST['company'];
-    $technician_name = "aryan";
+    $technician_name = "null";
     $maintenance_for = $_POST["maintenance_for"];
 
     // Stage default value
-    $req_stage = "New Request";
+    $req_stage = $_POST["status"];
 
     $sql = "INSERT INTO maintenance_request 
         (subject, created_by, maintenance_for, equipment_name, catogery_name, request_date, maintance_type, team_name, technician_name, schedule_date, req_stage, priority, company)

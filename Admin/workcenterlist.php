@@ -1,3 +1,7 @@
+<?php
+include("../includes/scripts/connection.php");   // DB connect
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,38 +77,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            Hello
-                                        </td>
-                                        <td>
-                                            w1
-                                        </td>
-                                        <td>
-                                            Tag1
-                                        </td>
-                                        <td>
-                                            abc
-                                        </td>
-                                        <td>
-                                            87
-                                        </td>
-                                        <td>
-                                            98 - 87
-                                        </td>
-                                        <td>
-                                            22.22
-                                        </td>
-                                        <td>
-                                            <a class='me-3' href="editworkcenter">
-                                                <img src='../assets/img/icons/edit.svg' alt='img'>
-                                            </a>
-                                            <a class='me-3' href="workcenterdelete">
-                                                <img src='../assets/img/icons/delete.svg' alt='img'>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
+<?php
+$sql = "SELECT * FROM work_center_master ORDER BY wc_id DESC";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()){
+        echo "<tr>
+            <td>{$row['workcenter_name']}</td>
+            <td>{$row['code']}</td>
+            <td>{$row['tag']}</td>
+            <td>{$row['alternative_wc']}</td>
+            <td>{$row['cost_per_hour']}</td>
+            <td>{$row['capacity_time_efficiency']}</td>
+            <td>{$row['oee_target']}</td>
+            <td>
+                <a class='me-3' href='editworkcenter?id={$row['wc_id']}'>
+                    <img src='../assets/img/icons/edit.svg' alt='edit'>
+                </a>
+                <a class='me-3 delete-btn' href='workcenterdelete?id={$row['wc_id']}'>
+                    <img src='../assets/img/icons/delete.svg' alt='delete'>
+                </a>
+            </td>
+        </tr>";
+    }
+} else {
+    echo "<tr><td colspan='8' class='text-center text-danger'>No Records Found</td></tr>";
+}
+?>
+</tbody>
+
                             </table>
                         </div>
                     </div>

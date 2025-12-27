@@ -1,3 +1,11 @@
+<?php
+include("../includes/scripts/connection.php");
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM work_center_master WHERE wc_id = $id";
+$result = $conn->query($sql);
+$data = $result->fetch_assoc();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,62 +33,63 @@
                         <h4>Add New work-Center</h4>
                     </div>  
                 </div>
-                <form action="add_request_action.php" method="post" enctype="multipart/form-data">
+                <form action="update_workcenter_action.php" method="post">
+                    <input type="hidden" name="wc_id" value="<?= $data['wc_id'] ?>">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>WorkCenter Name <b style="color:red">*</b></label>
-                                        <input type="text" name="workcenter" placeholder="Enter Name" value="Hello">
+                                        <input type="text" name="workcenter" placeholder="Enter Name" name="workcenter" value="<?= $data['workcenter_name'] ?>">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Code</label>
-                                        <input type="text" name="code" placeholder="Code" value="w1">
+                                        <input type="text" placeholder="Code" name="code" value="<?= $data['code'];?>">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Tag</label>
-                                        <input type="text" name="Tag" placeholder="Enter Tag" value="Tag1">
+                                        <input type="text" placeholder="Enter Tag" name="tag" value="<?= $data['tag'] ?>">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Alternative WorkCenter</label>
-                                        <input type="text" name="Tag" placeholder="Enter Alternative Workcenter" value="Alternative">
+                                        <input type="text" placeholder="Enter Alternative Workcenter" name="alternative" value="<?= $data['alternative_wc'] ?>">
                                     </div>
                                 </div>
                                 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Cost Per Hour</label>
-                                        <input type="number" name="cost" class="form-control" placeholder="Enter cost" value="56">
+                                        <input type="number" class="form-control" placeholder="Enter cost"  name="cost" value="<?= $data['cost_per_hour'] ?>">
                                     </div>
                                 </div>
                                 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Capacity Time Efficiency</label>
-                                        <input type="text" name="cte" placeholder="Enter Capacity" value="78 - 89">
+                                        <input type="text"  placeholder="Enter Capacity" name="cte" value="<?= $data['capacity_time_efficiency'] ?>">
                                     </div>
                                 </div>
                                 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>OEE Target</label>
-                                        <input type="number" name="oee" class="form-control" placeholder="OEE Target" value="78.65">
+                                        <input type="number" class="form-control" placeholder="OEE Target" name="oee" value="<?= $data['oee_target'] ?>">
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mt-4">
-                                    <button type="submit" name="submit" class="btn btn-submit me-2">Submit</button>
-                                    <a href="workcenterlist" class="btn btn-cancel">Cancel</a>
-                                </div>
+                                 <div class="col-lg-12 mt-4">
+                            <button type="submit" name="update" class="btn btn-submit me-2">Update</button>
+                            <a href="workcenterlist.php" class="btn btn-cancel">Cancel</a>
+                        </div>
 
                             </div>
                         </div>

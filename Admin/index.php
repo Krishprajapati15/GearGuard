@@ -140,14 +140,12 @@
                                         </thead>
                                         <tbody id="maintenanceTable">
                                             <?php
-                                            // Load maintenance requests dynamically
-                                            require_once "../includes/scripts/connection.php";
+                                                // Load maintenance requests dynamically (only from maintenance_request table)
+                                                require_once "../includes/scripts/connection.php";
 
-                                            // Join with user_master to get employee name from created_by (user_id)
-                                            $sql = "SELECT mr.subject, um.user_name AS employee_name, mr.technician_name, mr.catogery_name, mr.req_stage, mr.company
-                                                    FROM maintenance_request mr
-                                                    LEFT JOIN user_master um ON mr.created_by = um.user_id
-                                                    ORDER BY mr.req_id DESC";
+                                                $sql = "SELECT subject, created_by, technician_name, catogery_name, req_stage, company
+                                                    FROM maintenance_request
+                                                    ORDER BY req_id DESC";
 
                                             $result = $conn->query($sql);
                                             $row_num = 1;
@@ -158,7 +156,7 @@
                                                 <tr>
                                                     <td><?php echo $row_num++; ?></td>
                                                     <td><?php echo htmlspecialchars($row['subject']); ?></td>
-                                                    <td><?php echo htmlspecialchars($row['employee_name'] ?? ''); ?></td>
+                                                    <td><?php echo htmlspecialchars($row['created_by']); ?></td>
                                                     <td><?php echo htmlspecialchars($row['technician_name']); ?></td>
                                                     <td><?php echo htmlspecialchars($row['catogery_name']); ?></td>
                                                     <td><?php echo htmlspecialchars($row['req_stage']); ?></td>

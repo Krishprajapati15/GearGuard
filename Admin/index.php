@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+include("../includes/scripts/connection.php");
+if(!isset($_SESSION['odoo_logedin_user_id'])){ header("Location: ../user-login/userlogin.php"); exit(); }
+
+$user_id = $_SESSION['odoo_logedin_user_id'];
+$user = mysqli_fetch_assoc(mysqli_query($conn,"SELECT user_role FROM user_master WHERE user_id=$user_id"));
+
+if($user['user_role'] != 3){ header("Location: 404.php"); exit(); }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,6 +56,30 @@
         border-color: #A3C2C2 !important;
         box-shadow: none !important;
         outline: none;
+    }
+
+    .completed {
+        color: green !important;
+        background: rgba(144, 238, 144, 0.527) !important;
+        border-radius: 10px;
+        padding: 5px 5px;
+        text-align: center;
+    }
+
+    .process{
+        color: orange !important;
+        background: rgba(255, 166, 0, 0.286) !important;
+        border-radius: 10px;
+        padding: 5px 5px;
+        text-align: center;
+    }
+
+    .cancelled{
+        color: rgb(84, 83, 83) !important;
+        background: rgba(128, 128, 128, 0.538) !important;
+        border-radius: 10px;
+        padding: 5px 5px;
+        text-align: center;
     }
 </style>
 
@@ -136,6 +171,7 @@
                                                 <th>Category</th>
                                                 <th>Stage</th>
                                                 <th>Company</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody id="maintenanceTable">
@@ -161,6 +197,7 @@
                                                     <td><?php echo htmlspecialchars($row['catogery_name']); ?></td>
                                                     <td><?php echo htmlspecialchars($row['req_stage']); ?></td>
                                                     <td><?php echo htmlspecialchars($row['company']); ?></td>
+                                                    <td><p class="completed">completed</p></td>
                                                 </tr>
                                             <?php
                                                 endwhile;

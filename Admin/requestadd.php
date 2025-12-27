@@ -163,7 +163,7 @@ require "../includes/scripts/connection.php";
                                     </div>
                                 </div>
 
-                        
+
 
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
@@ -252,17 +252,19 @@ require "../includes/scripts/connection.php";
                                         <label>Priority</label>
                                         <div class="d-flex mt-2">
                                             <div class="form-check me-3">
-                                                <input class="form-check-input" type="radio" value="Low" name="priority" id="Low"
-                                                    checked>
+                                                <input class="form-check-input" type="radio" value="Low" name="priority"
+                                                    id="Low" checked>
                                                 <label class="form-check-label" for="Low">Low</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" value="Medium" name="priority" id="Medium">    
-                                                
+                                                <input class="form-check-input" type="radio" value="Medium"
+                                                    name="priority" id="Medium">
+
                                                 <label class="form-check-label" for="Medium">Medium</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" value="High" name="priority" id="High">
+                                                <input class="form-check-input" type="radio" value="High"
+                                                    name="priority" id="High">
                                                 <label class="form-check-label" for="High">High</label>
                                             </div>
                                         </div>
@@ -295,39 +297,20 @@ require "../includes/scripts/connection.php";
                                 </div>
 
                                 <div class="col-lg-4 col-sm-6 col-12">
-                                    <label for="Status">Status</label>
-                                    <div class="d-flex align-items-center">
-                                        <div class="dropdown custom-status-dropdown">
-                                            <button
-                                                class="btn dropdown-toggle status-display-btn d-flex align-items-center"
-                                                type="button" id="statusDropdown" data-bs-toggle="dropdown">
-                                                <span class="dot grey me-2" id="current-dot"></span>
-                                                <span id="current-text">Select Status</span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center" href="#"
-                                                        data-color="grey" data-text="In Progress">
-                                                        <span class="dot grey me-2"></span> In Progress
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center" href="#"
-                                                        data-color="red" data-text="Blocked">
-                                                        <span class="dot red me-2"></span> Blocked
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center" href="#"
-                                                        data-color="green" data-text="Ready for next stage">
-                                                        <span class="dot green me-2"></span> Ready for next stage
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                    <div class="form-group">
+                                        <label for="Status">Status</label>
+                                        <div class="d-flex align-items-center">
+                                            <span class="dot grey me-2" id="status-dot-preview"></span>
+
+                                            <select name="status" id="statusSelect" class="form-control select2">
+                                                <option value="grey" data-text="In Progress">In Progress</option>
+                                                <option value="red" data-text="Blocked">Blocked</option>
+                                                <option value="green" data-text="Ready for next stage">Ready for next
+                                                    stage</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Notes</label>
@@ -374,58 +357,58 @@ require "../includes/scripts/connection.php";
 
     <script src="../assets/js/script.js"></script>
     <script>
-        $(document).ready(function() {
-    $('.custom-status-dropdown .dropdown-item').on('click', function(e) {
-        e.preventDefault();
-        
-        // 1. Get the data from the clicked item
-        var statusText = $(this).data('text');
-        var statusColor = $(this).data('color');
+        $(document).ready(function () {
+            $('.custom-status-dropdown .dropdown-item').on('click', function (e) {
+                e.preventDefault();
 
-        // 2. Update the button text
-        $('#current-text').text(statusText);
+                // 1. Get the data from the clicked item
+                var statusText = $(this).data('text');
+                var statusColor = $(this).data('color');
 
-        // 3. Update the dot color
-        $('#current-dot').removeClass('grey red green').addClass(statusColor);
+                // 2. Update the button text
+                $('#current-text').text(statusText);
 
-        // 4. Update the text color of the display button
-        $('#current-text').removeClass('text-grey text-red text-green').addClass('text-' + statusColor);
-    });
-});
+                // 3. Update the dot color
+                $('#current-dot').removeClass('grey red green').addClass(statusColor);
 
-// Toggle equipment/work center options based on Maintenance For selection
-document.addEventListener('DOMContentLoaded', function () {
-    var maintenanceForSelect = document.getElementById('maintenanceFor');
-    var equipmentSelect      = document.getElementById('equipmentSelect');
-
-    function updateEquipmentOptions() {
-        var selectedType = maintenanceForSelect.value; // "Equipment" or "Work Center"
-
-        Array.prototype.forEach.call(equipmentSelect.options, function (opt) {
-            var type = opt.getAttribute('data-type');
-
-            if (!type) {
-                // Keep placeholder visible always
-                opt.style.display = '';
-                return;
-            }
-
-            if (type === selectedType) {
-                opt.style.display = '';
-            } else {
-                opt.style.display = 'none';
-            }
+                // 4. Update the text color of the display button
+                $('#current-text').removeClass('text-grey text-red text-green').addClass('text-' + statusColor);
+            });
         });
 
-        // Reset selection to placeholder after toggle
-        equipmentSelect.selectedIndex = 0;
-    }
+        // Toggle equipment/work center options based on Maintenance For selection
+        document.addEventListener('DOMContentLoaded', function () {
+            var maintenanceForSelect = document.getElementById('maintenanceFor');
+            var equipmentSelect = document.getElementById('equipmentSelect');
 
-    if (maintenanceForSelect && equipmentSelect) {
-        updateEquipmentOptions();
-        maintenanceForSelect.addEventListener('change', updateEquipmentOptions);
-    }
-});
+            function updateEquipmentOptions() {
+                var selectedType = maintenanceForSelect.value; // "Equipment" or "Work Center"
+
+                Array.prototype.forEach.call(equipmentSelect.options, function (opt) {
+                    var type = opt.getAttribute('data-type');
+
+                    if (!type) {
+                        // Keep placeholder visible always
+                        opt.style.display = '';
+                        return;
+                    }
+
+                    if (type === selectedType) {
+                        opt.style.display = '';
+                    } else {
+                        opt.style.display = 'none';
+                    }
+                });
+
+                // Reset selection to placeholder after toggle
+                equipmentSelect.selectedIndex = 0;
+            }
+
+            if (maintenanceForSelect && equipmentSelect) {
+                updateEquipmentOptions();
+                maintenanceForSelect.addEventListener('change', updateEquipmentOptions);
+            }
+        });
     </script>
 </body>
 

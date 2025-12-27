@@ -139,34 +139,39 @@
                                             </tr>
                                         </thead>
                                         <tbody id="maintenanceTable">
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Test Activity</td>
-                                                <td>Rangat</td>
-                                                <td>Priyanshu</td>
-                                                <td>Computer</td>
-                                                <td>New Request</td>
-                                                <td>My Company</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Test Activity</td>
-                                                <td>Rangat</td>
-                                                <td>Priyanshu</td>
-                                                <td>Computer</td>
-                                                <td>New Request</td>
-                                                <td>My Company</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Test Activity</td>
-                                                <td>Rangat</td>
-                                                <td>Priyanshu</td>
-                                                <td>Computer</td>
-                                                <td>New Request</td>
-                                                <td>My Company</td>
-                                            </tr>
+                                            <?php
+                                            // Load maintenance requests dynamically
+                                            require_once "../includes/scripts/connection.php";
 
+                                            // Join with user_master to get employee name from created_by (user_id)
+                                            $sql = "SELECT mr.subject, um.user_name AS employee_name, mr.technician_name, mr.catogery_name, mr.req_stage, mr.company
+                                                    FROM maintenance_request mr
+                                                    LEFT JOIN user_master um ON mr.created_by = um.user_id
+                                                    ORDER BY mr.req_id DESC";
+
+                                            $result = $conn->query($sql);
+                                            $row_num = 1;
+
+                                            if ($result && $result->num_rows > 0):
+                                                while ($row = $result->fetch_assoc()):
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $row_num++; ?></td>
+                                                    <td><?php echo htmlspecialchars($row['subject']); ?></td>
+                                                    <td><?php echo htmlspecialchars($row['employee_name'] ?? ''); ?></td>
+                                                    <td><?php echo htmlspecialchars($row['technician_name']); ?></td>
+                                                    <td><?php echo htmlspecialchars($row['catogery_name']); ?></td>
+                                                    <td><?php echo htmlspecialchars($row['req_stage']); ?></td>
+                                                    <td><?php echo htmlspecialchars($row['company']); ?></td>
+                                                </tr>
+                                            <?php
+                                                endwhile;
+                                            else:
+                                            ?>
+                                                <tr>
+                                                    <td colspan="7" class="text-center">No maintenance requests found.</td>
+                                                </tr>
+                                            <?php endif; ?>
                                         </tbody>
                                     </table>
                                     <div id="noDataMessage" class="text-center p-5" style="display: none;">
